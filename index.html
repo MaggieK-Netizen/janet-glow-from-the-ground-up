@@ -4,15 +4,32 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Glow From The Ground Up</title>
+  <title>Glow From The Ground Up | Janet</title>
 
-  <meta name="description" content="Helping you rise beyond your beginning. Faith, purpose, mindset, personal growth and opportunity.">
+  <meta
+    name="description"
+    content="Glow From The Ground Up — a space for faith, purpose, growth, stories and becoming. Created by Janet."
+  >
 
   <style>
+    :root {
+      --forest: #294538;
+      --deep: #1d3027;
+      --sage: #6f8978;
+      --cream: #f8f3eb;
+      --soft: #eee5d8;
+      --terracotta: #bd7656;
+      --gold: #c7a56a;
+      --white: #ffffff;
+      --text: #34443b;
+      --muted: #718078;
+      --shadow: 0 18px 50px rgba(35, 55, 44, 0.10);
+    }
+
     * {
-      box-sizing: border-box;
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
     }
 
     html {
@@ -20,232 +37,622 @@
     }
 
     body {
-      font-family: Arial, sans-serif;
-      background: #f8f4ed;
-      color: #26382c;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--cream);
+      color: var(--text);
       line-height: 1.7;
     }
 
-    h1, h2, h3 {
-      font-family: Georgia, serif;
+    h1,
+    h2,
+    h3,
+    .brand {
+      font-family: Georgia, "Times New Roman", serif;
     }
+
+    a {
+      color: inherit;
+    }
+
+    /* NAVIGATION */
 
     nav {
       position: sticky;
       top: 0;
-      z-index: 100;
-      background: rgba(248,244,237,0.96);
-      border-bottom: 1px solid #ddd4c5;
-      padding: 18px 6%;
+      z-index: 1000;
+      background: rgba(248, 243, 235, 0.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(41, 69, 56, 0.12);
+      padding: 17px 6%;
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
 
-    .logo {
-      font-family: Georgia, serif;
+    .brand {
+      text-decoration: none;
       font-size: 22px;
       font-weight: bold;
-      color: #31533d;
+      color: var(--forest);
+      letter-spacing: -0.3px;
     }
 
-    nav a {
-      color: #31533d;
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .nav-links a {
       text-decoration: none;
-      margin-left: 22px;
+      color: var(--forest);
       font-size: 14px;
+      font-weight: 600;
+      transition: 0.25s ease;
     }
 
-    nav a:hover {
-      color: #a55d42;
+    .nav-links a:hover {
+      color: var(--terracotta);
     }
+
+    .nav-button {
+      background: var(--forest);
+      color: white !important;
+      padding: 10px 17px;
+      border-radius: 30px;
+    }
+
+    /* HERO */
 
     .hero {
-      min-height: 85vh;
+      min-height: 88vh;
       display: flex;
       align-items: center;
-      padding: 80px 8%;
+      position: relative;
+      overflow: hidden;
       background:
-        linear-gradient(rgba(35,58,43,.58), rgba(35,58,43,.58)),
-        url("https://images.unsplash.com/photo-1499209974431-9dddcece7f88?auto=format&fit=crop&w=1800&q=85")
+        linear-gradient(
+          90deg,
+          rgba(25, 46, 36, 0.88),
+          rgba(25, 46, 36, 0.56),
+          rgba(25, 46, 36, 0.25)
+        ),
+        url("https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=2000&q=90")
         center/cover;
       color: white;
     }
 
     .hero-content {
-      max-width: 750px;
+      width: 100%;
+      max-width: 900px;
+      padding: 90px 8%;
+    }
+
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      font-size: 13px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      color: #ead6a9;
     }
 
     .hero h1 {
-      font-size: clamp(45px, 7vw, 82px);
-      line-height: 1.05;
-      margin-bottom: 25px;
+      font-size: clamp(50px, 8vw, 92px);
+      line-height: 0.98;
+      max-width: 850px;
+      margin-bottom: 28px;
+      letter-spacing: -2px;
     }
 
-    .hero p {
-      font-size: 20px;
+    .hero-description {
       max-width: 650px;
-      margin-bottom: 30px;
+      font-size: 20px;
+      color: rgba(255,255,255,0.9);
+      margin-bottom: 34px;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
     }
 
     .button {
       display: inline-block;
-      background: #c97855;
-      color: white;
-      padding: 14px 26px;
-      border-radius: 30px;
+      padding: 14px 25px;
+      border-radius: 40px;
       text-decoration: none;
       font-weight: bold;
-      margin-right: 10px;
+      transition: 0.25s ease;
     }
 
-    .button.secondary {
-      background: transparent;
-      border: 1px solid white;
+    .button.primary {
+      background: var(--terracotta);
+      color: white;
     }
+
+    .button.primary:hover {
+      transform: translateY(-2px);
+      background: #a96044;
+    }
+
+    .button.outline {
+      border: 1px solid rgba(255,255,255,0.75);
+      color: white;
+    }
+
+    .button.outline:hover {
+      background: white;
+      color: var(--forest);
+    }
+
+    /* GENERAL */
 
     section {
-      padding: 90px 8%;
+      padding: 95px 8%;
     }
 
-    .section-title {
-      max-width: 750px;
-      margin-bottom: 45px;
+    .section-heading {
+      max-width: 760px;
+      margin-bottom: 50px;
     }
 
-    .section-title h2 {
-      font-size: 45px;
-      margin-bottom: 15px;
-      color: #31533d;
-    }
-
-    .section-title p {
-      color: #68766d;
-      font-size: 18px;
-    }
-
-    .intro {
-      background: #fffaf3;
+    .section-heading.center {
+      margin-left: auto;
+      margin-right: auto;
       text-align: center;
     }
 
+    .small-label {
+      color: var(--terracotta);
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font-size: 12px;
+      font-weight: bold;
+      margin-bottom: 12px;
+    }
+
+    .section-heading h2 {
+      color: var(--forest);
+      font-size: clamp(35px, 5vw, 56px);
+      line-height: 1.08;
+      margin-bottom: 18px;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+      font-size: 18px;
+    }
+
+    /* INTRO */
+
+    .intro {
+      background: #fffaf4;
+      text-align: center;
+      padding-top: 100px;
+      padding-bottom: 100px;
+    }
+
+    .intro h2 {
+      font-size: clamp(34px, 5vw, 55px);
+      color: var(--forest);
+      max-width: 850px;
+      margin: 0 auto 25px;
+    }
+
     .intro p {
-      max-width: 800px;
+      max-width: 760px;
       margin: auto;
-      font-size: 21px;
-      color: #4e5c53;
+      color: var(--muted);
+      font-size: 20px;
+    }
+
+    /* BELIEFS */
+
+    .beliefs {
+      background: var(--cream);
     }
 
     .cards {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 25px;
+      gap: 24px;
     }
 
     .card {
       background: white;
-      padding: 32px;
-      border-radius: 18px;
-      box-shadow: 0 8px 30px rgba(40,60,45,.07);
+      padding: 35px;
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+      transition: 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card-number {
+      font-family: Georgia, serif;
+      color: var(--gold);
+      font-size: 30px;
+      margin-bottom: 15px;
     }
 
     .card h3 {
-      color: #31533d;
-      font-size: 25px;
+      color: var(--forest);
+      font-size: 26px;
       margin-bottom: 12px;
     }
 
     .card p {
-      color: #69746d;
+      color: var(--muted);
     }
 
-    .book {
-      background: #e9dfd0;
+    /* ABOUT */
+
+    .about {
+      background: #e9dfd1;
+    }
+
+    .about-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 60px;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 65px;
+      align-items: center;
+    }
+
+    .about-image {
+      min-height: 520px;
+      border-radius: 24px;
+      background:
+        linear-gradient(rgba(41,69,56,.18), rgba(41,69,56,.18)),
+        url("https://images.unsplash.com/photo-1499209974431-9dddcece7f88?auto=format&fit=crop&w=1200&q=90")
+        center/cover;
+      box-shadow: var(--shadow);
+    }
+
+    .about-copy h2 {
+      font-size: clamp(38px, 5vw, 58px);
+      color: var(--forest);
+      line-height: 1.08;
+      margin-bottom: 22px;
+    }
+
+    .about-copy p {
+      font-size: 18px;
+      color: #58665e;
+      margin-bottom: 18px;
+    }
+
+    .signature {
+      font-family: Georgia, serif;
+      font-style: italic;
+      font-size: 25px;
+      color: var(--terracotta);
+      margin-top: 25px;
+    }
+
+    /* BOOK */
+
+    .book {
+      background: var(--forest);
+      color: white;
+    }
+
+    .book-grid {
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: 70px;
       align-items: center;
     }
 
     .book-cover {
-      min-height: 480px;
+      min-height: 540px;
       border-radius: 10px;
       background:
-        linear-gradient(rgba(38,56,44,.25), rgba(38,56,44,.25)),
-        url("https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&w=1000&q=85")
+        linear-gradient(rgba(29,48,39,.38), rgba(29,48,39,.38)),
+        url("https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&w=1000&q=90")
         center/cover;
       display: flex;
       justify-content: center;
       align-items: center;
-      color: white;
       text-align: center;
-      padding: 30px;
+      padding: 35px;
+      box-shadow: 0 25px 60px rgba(0,0,0,.25);
     }
 
-    .book-cover h2 {
-      font-size: 40px;
+    .book-cover-inner {
+      border: 1px solid rgba(255,255,255,.55);
+      padding: 40px 25px;
+      width: 100%;
     }
 
-    .story {
-      background: #31533d;
+    .book-cover h3 {
+      font-size: 42px;
+      line-height: 1.05;
+      margin-bottom: 18px;
+    }
+
+    .book-copy .small-label {
+      color: #e3c58e;
+    }
+
+    .book-copy h2 {
+      font-size: clamp(40px, 5vw, 62px);
+      line-height: 1.05;
+      margin-bottom: 25px;
+    }
+
+    .book-copy p {
+      font-size: 18px;
+      color: rgba(255,255,255,.82);
+      margin-bottom: 25px;
+    }
+
+    .quote {
+      border-left: 3px solid var(--gold);
+      padding-left: 20px;
+      margin: 30px 0;
+      font-family: Georgia, serif;
+      font-style: italic;
+      font-size: 21px;
+      color: #f1e5d2;
+    }
+
+    /* STORIES */
+
+    .stories {
+      background: #fffaf4;
+    }
+
+    .story-card {
+      background: white;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .story-top {
+      height: 170px;
+      background:
+        linear-gradient(rgba(41,69,56,.55), rgba(41,69,56,.55)),
+        url("https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=1000&q=85")
+        center/cover;
+      display: flex;
+      align-items: flex-end;
+      padding: 25px;
       color: white;
     }
 
-    .story .section-title h2,
-    .story .section-title p {
-      color: white;
+    .story-top h3 {
+      font-size: 27px;
+    }
+
+    .story-body {
+      padding: 27px;
+    }
+
+    .story-body p {
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+
+    .read-more {
+      color: var(--terracotta);
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    /* MEDIA */
+
+    .media {
+      background: var(--soft);
     }
 
     .media-card {
-      background: #fffaf3;
-      border-radius: 18px;
-      padding: 30px;
+      background: white;
+      border-radius: 20px;
+      padding: 38px 30px;
       text-align: center;
+      box-shadow: var(--shadow);
     }
 
     .media-icon {
-      font-size: 48px;
+      width: 70px;
+      height: 70px;
+      margin: 0 auto 20px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #edf1ed;
+      font-size: 31px;
+    }
+
+    .media-card h3 {
+      color: var(--forest);
+      font-size: 26px;
+      margin-bottom: 12px;
+    }
+
+    .media-card p {
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+
+    .media-link {
+      text-decoration: none;
+      color: var(--terracotta);
+      font-weight: bold;
+    }
+
+    /* JOURNEY */
+
+    .journey {
+      text-align: center;
+      background:
+        linear-gradient(rgba(29,48,39,.88), rgba(29,48,39,.88)),
+        url("https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=1800&q=85")
+        center/cover;
+      color: white;
+    }
+
+    .journey h2 {
+      font-size: clamp(38px, 5vw, 60px);
+      max-width: 850px;
+      margin: 0 auto 20px;
+      line-height: 1.05;
+    }
+
+    .journey p {
+      max-width: 700px;
+      margin: 0 auto 30px;
+      color: rgba(255,255,255,.82);
+      font-size: 19px;
+    }
+
+    /* CONTACT */
+
+    .contact {
+      background: var(--cream);
+      text-align: center;
+    }
+
+    .contact-box {
+      max-width: 800px;
+      margin: auto;
+      background: white;
+      padding: 55px 35px;
+      border-radius: 25px;
+      box-shadow: var(--shadow);
+    }
+
+    .contact-box h2 {
+      color: var(--forest);
+      font-size: clamp(38px, 5vw, 55px);
       margin-bottom: 15px;
     }
 
-    .contact {
-      text-align: center;
-      background: #efe8dc;
+    .contact-box p {
+      color: var(--muted);
+      font-size: 18px;
+      margin-bottom: 25px;
     }
 
+    /* FOOTER */
+
     footer {
-      background: #26382c;
+      background: var(--deep);
       color: white;
       text-align: center;
-      padding: 35px 20px;
+      padding: 50px 20px;
+    }
+
+    footer h3 {
+      font-size: 28px;
+      margin-bottom: 8px;
     }
 
     footer p {
-      opacity: .8;
+      color: rgba(255,255,255,.68);
     }
 
-    @media(max-width: 800px) {
+    .footer-note {
+      margin-top: 25px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,.12);
+      font-size: 13px;
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 850px) {
+
       nav {
+        padding: 15px 5%;
         flex-direction: column;
         gap: 12px;
       }
 
-      nav a {
-        margin: 0 7px;
+      .brand {
+        font-size: 19px;
       }
 
-      .cards,
-      .book {
-        grid-template-columns: 1fr;
+      .nav-links {
+        gap: 13px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .nav-links a {
+        font-size: 12px;
+      }
+
+      .nav-button {
+        padding: 8px 13px;
       }
 
       .hero {
-        min-height: 75vh;
-        padding: 60px 7%;
+        min-height: 78vh;
+      }
+
+      .hero-content {
+        padding: 75px 7%;
+      }
+
+      .hero h1 {
+        letter-spacing: -1px;
       }
 
       section {
-        padding: 65px 7%;
+        padding: 70px 7%;
+      }
+
+      .cards,
+      .about-grid,
+      .book-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .about-image {
+        min-height: 400px;
+      }
+
+      .book-cover {
+        min-height: 450px;
+      }
+    }
+
+    @media (max-width: 500px) {
+
+      .hero-description {
+        font-size: 17px;
+      }
+
+      .buttons {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .button {
+        text-align: center;
+      }
+
+      .card {
+        padding: 28px;
+      }
+
+      .about-image {
+        min-height: 330px;
+      }
+
+      .book-cover {
+        min-height: 390px;
+      }
+
+      .book-cover h3 {
+        font-size: 34px;
       }
     }
   </style>
@@ -253,210 +660,502 @@
 
 <body>
 
-  <nav>
-    <div class="logo">Glow From The Ground Up</div>
+  <!-- NAVIGATION -->
 
-    <div>
+  <nav>
+    <a href="#home" class="brand">Glow From The Ground Up</a>
+
+    <div class="nav-links">
       <a href="#about">About</a>
       <a href="#book">The Book</a>
       <a href="#stories">Stories</a>
       <a href="#media">Media</a>
-      <a href="#contact">Contact</a>
+      <a href="#contact" class="nav-button">Connect</a>
     </div>
   </nav>
 
-  <header class="hero">
+
+  <!-- HERO -->
+
+  <header class="hero" id="home">
     <div class="hero-content">
-      <p>GLOW FROM THE GROUND UP</p>
 
-      <h1>Helping You Rise Beyond Your Beginning</h1>
+      <div class="eyebrow">
+        Glow From The Ground Up
+      </div>
 
-      <p>
-        Your beginning is part of your story.
-        It doesn't have to become your identity.
+      <h1>
+        You can rise beyond your beginning.
+      </h1>
+
+      <p class="hero-description">
+        A space created by Janet for conversations about faith,
+        purpose, personal growth, resilience and the journey of becoming.
       </p>
 
-      <a href="#book" class="button">Discover The Book</a>
-      <a href="#stories" class="button secondary">Read Stories</a>
+      <div class="buttons">
+        <a href="#book" class="button primary">
+          Discover The Book
+        </a>
+
+        <a href="#stories" class="button outline">
+          Explore Stories
+        </a>
+      </div>
+
     </div>
   </header>
 
-  <section class="intro" id="about">
-    <div class="section-title" style="margin:auto;">
-      <h2>You Can Grow From Where You Are</h2>
 
-      <p>
-        Glow From The Ground Up is a space for faith, purpose,
-        mindset, personal growth and opportunity.
-      </p>
+  <!-- INTRO -->
+
+  <section class="intro">
+
+    <div class="small-label">
+      The Journey
     </div>
+
+    <h2>
+      Your beginning is part of your story.
+      It does not have to become your identity.
+    </h2>
+
+    <p>
+      Glow From The Ground Up is a place to pause, reflect,
+      learn, grow and remember that where you started is not
+      necessarily where you are going.
+    </p>
+
   </section>
 
-  <section>
-    <div class="section-title">
-      <h2>What We Believe</h2>
-      <p>Growth begins when you start believing that your story can change.</p>
+
+  <!-- BELIEFS -->
+
+  <section class="beliefs">
+
+    <div class="section-heading">
+      <div class="small-label">What We Believe</div>
+
+      <h2>
+        Growth starts from within.
+      </h2>
+
+      <p>
+        Every journey looks different. But faith, purpose and
+        intentional growth can help us move forward.
+      </p>
     </div>
 
     <div class="cards">
 
       <div class="card">
+        <div class="card-number">01</div>
+
         <h3>Faith</h3>
+
         <p>
           Building a deeper relationship with God and discovering
-          strength through faith.
+          strength, hope and direction through faith.
         </p>
       </div>
 
       <div class="card">
+        <div class="card-number">02</div>
+
         <h3>Purpose</h3>
+
         <p>
-          Understanding who you are, where you're going and
-          what you were created to contribute.
+          Exploring who you are, what matters to you and the
+          contribution you were created to make.
         </p>
       </div>
 
       <div class="card">
+        <div class="card-number">03</div>
+
         <h3>Growth</h3>
+
         <p>
-          Developing the mindset, skills and courage needed
-          to move beyond your starting point.
+          Developing the courage, mindset and wisdom to keep
+          becoming the person you are called to be.
         </p>
       </div>
 
     </div>
+
   </section>
+
+
+  <!-- ABOUT JANET -->
+
+  <section class="about" id="about">
+
+    <div class="about-grid">
+
+      <div class="about-image"></div>
+
+      <div class="about-copy">
+
+        <div class="small-label">
+          Meet Janet
+        </div>
+
+        <h2>
+          There is power in becoming.
+        </h2>
+
+        <p>
+          Glow From The Ground Up is Janet's space for sharing
+          stories, reflections and conversations around the
+          experiences that shape us.
+        </p>
+
+        <p>
+          It is a reminder that growth does not always happen
+          overnight. Sometimes it happens quietly — through
+          faith, difficult seasons, brave decisions and choosing
+          to keep going.
+        </p>
+
+        <p>
+          Through the book, stories, conversations and media,
+          Janet hopes to create a space where people can learn,
+          reflect and find encouragement for their own journey.
+        </p>
+
+        <div class="signature">
+          — Janet
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- BOOK -->
 
   <section class="book" id="book">
 
-    <div class="book-cover">
-      <div>
-        <h2>Glow From<br>The Ground Up</h2>
-        <p>A journey of growth, faith and becoming.</p>
+    <div class="book-grid">
+
+      <div class="book-cover">
+
+        <div class="book-cover-inner">
+
+          <div class="small-label">
+            Janet's Book
+          </div>
+
+          <h3>
+            Glow From<br>
+            The Ground Up
+          </h3>
+
+          <p>
+            A journey of faith, growth and becoming.
+          </p>
+
+        </div>
+
       </div>
-    </div>
 
-    <div>
-      <h2 style="font-size:45px; margin-bottom:20px;">
-        The Book
-      </h2>
 
-      <p style="font-size:18px; margin-bottom:25px;">
-        A story about beginnings, challenges, growth and discovering
-        the person you are becoming.
-      </p>
+      <div class="book-copy">
 
-      <a href="#contact" class="button">Learn More</a>
+        <div class="small-label">
+          The Book
+        </div>
+
+        <h2>
+          Glow From The Ground Up
+        </h2>
+
+        <p>
+          A story about beginnings, challenges, growth,
+          faith and discovering the person you are becoming.
+        </p>
+
+        <div class="quote">
+          "Where you began may be part of your story,
+          but it does not have to determine where you finish."
+        </div>
+
+        <a href="#contact" class="button primary">
+          Learn More
+        </a>
+
+      </div>
+
     </div>
 
   </section>
 
-  <section class="story" id="stories">
 
-    <div class="section-title">
-      <h2>Stories That Make Us Grow</h2>
+  <!-- STORIES -->
+
+  <section class="stories" id="stories">
+
+    <div class="section-heading center">
+
+      <div class="small-label">
+        Stories
+      </div>
+
+      <h2>
+        Stories that make us grow.
+      </h2>
 
       <p>
-        Real experiences. Lessons learned. Stories of faith,
-        resilience and transformation.
+        Real experiences. Honest reflections.
+        Lessons from the journey.
       </p>
+
     </div>
+
 
     <div class="cards">
 
-      <div class="card">
-        <h3>My Beginning</h3>
-        <p>
-          Every journey has a starting point.
-          Your beginning does not have to define your destination.
-        </p>
-      </div>
+      <article class="story-card">
 
-      <div class="card">
-        <h3>Finding Purpose</h3>
-        <p>
-          Sometimes purpose becomes clearer while we are
-          walking through the journey.
-        </p>
-      </div>
+        <div class="story-top">
+          <h3>My Beginning</h3>
+        </div>
 
-      <div class="card">
-        <h3>Becoming</h3>
-        <p>
-          Growth is not always loud. Sometimes it happens
-          quietly, one decision at a time.
-        </p>
-      </div>
+        <div class="story-body">
+
+          <p>
+            Every journey has a starting point.
+            Your beginning can shape you without defining you.
+          </p>
+
+          <a href="#contact" class="read-more">
+            Read more →
+          </a>
+
+        </div>
+
+      </article>
+
+
+      <article class="story-card">
+
+        <div class="story-top">
+          <h3>Finding Purpose</h3>
+        </div>
+
+        <div class="story-body">
+
+          <p>
+            Sometimes purpose becomes clearer while we are
+            walking through the journey itself.
+          </p>
+
+          <a href="#contact" class="read-more">
+            Read more →
+          </a>
+
+        </div>
+
+      </article>
+
+
+      <article class="story-card">
+
+        <div class="story-top">
+          <h3>Becoming</h3>
+        </div>
+
+        <div class="story-body">
+
+          <p>
+            Growth is not always loud. Sometimes it happens
+            quietly, one decision at a time.
+          </p>
+
+          <a href="#contact" class="read-more">
+            Read more →
+          </a>
+
+        </div>
+
+      </article>
 
     </div>
 
   </section>
 
-  <section id="media">
 
-    <div class="section-title">
-      <h2>Media & Resources</h2>
+  <!-- MEDIA -->
+
+  <section class="media" id="media">
+
+    <div class="section-heading center">
+
+      <div class="small-label">
+        Media & Resources
+      </div>
+
+      <h2>
+        Keep the conversation going.
+      </h2>
 
       <p>
         Videos, podcasts, conversations and resources
-        to help you keep growing.
+        will live here as the Glow From The Ground Up
+        community continues to grow.
       </p>
+
     </div>
+
 
     <div class="cards">
 
       <div class="media-card">
-        <div class="media-icon">🎥</div>
-        <h3>Videos</h3>
+
+        <div class="media-icon">
+          🎥
+        </div>
+
+        <h3>
+          Videos
+        </h3>
+
         <p>
-          Watch conversations, teachings and inspiring stories.
+          Conversations, teachings, interviews and
+          inspiring stories.
         </p>
+
+        <a href="#contact" class="media-link">
+          Watch videos →
+        </a>
+
       </div>
 
-      <div class="media-card">
-        <div class="media-icon">🎙️</div>
-        <h3>Podcasts</h3>
-        <p>
-          Listen to conversations about faith, purpose and growth.
-        </p>
-      </div>
 
       <div class="media-card">
-        <div class="media-icon">📖</div>
-        <h3>Resources</h3>
+
+        <div class="media-icon">
+          🎙️
+        </div>
+
+        <h3>
+          Podcasts
+        </h3>
+
         <p>
-          Discover practical resources for your personal journey.
+          Honest conversations about faith, purpose,
+          growth and life.
         </p>
+
+        <a href="#contact" class="media-link">
+          Listen to podcasts →
+        </a>
+
+      </div>
+
+
+      <div class="media-card">
+
+        <div class="media-icon">
+          📖
+        </div>
+
+        <h3>
+          Resources
+        </h3>
+
+        <p>
+          Practical resources and reflections for
+          your personal journey.
+        </p>
+
+        <a href="#contact" class="media-link">
+          Explore resources →
+        </a>
+
       </div>
 
     </div>
 
   </section>
+
+
+  <!-- JOURNEY CTA -->
+
+  <section class="journey">
+
+    <div class="small-label">
+      Your Journey Matters
+    </div>
+
+    <h2>
+      You don't have to have everything figured out.
+    </h2>
+
+    <p>
+      Sometimes the next step is simply deciding to begin.
+      Keep growing. Keep becoming. Keep going.
+    </p>
+
+    <a href="#contact" class="button primary">
+      Connect With Glow From The Ground Up
+    </a>
+
+  </section>
+
+
+  <!-- CONTACT -->
 
   <section class="contact" id="contact">
 
-    <div class="section-title" style="margin:auto;">
-      <h2>Start Your Journey</h2>
+    <div class="contact-box">
+
+      <div class="small-label">
+        Connect
+      </div>
+
+      <h2>
+        Start the conversation.
+      </h2>
 
       <p>
-        You don't have to have everything figured out.
-        You just have to start.
+        For book conversations, collaborations, speaking,
+        media or other enquiries, connect with Glow From
+        The Ground Up.
       </p>
 
-      <br>
+      <!--
+        Janet's real email/social links can be added here
+        once they are available.
+      -->
 
-      <a href="mailto:hello@glowfromthegroundup.com" class="button">
-        Get In Touch
-      </a>
+      <p>
+        Contact details coming soon.
+      </p>
+
     </div>
 
   </section>
 
+
+  <!-- FOOTER -->
+
   <footer>
-    <h3>Glow From The Ground Up</h3>
-    <p>Helping you rise beyond your beginning.</p>
-    <br>
-    <p>© 2026 Glow From The Ground Up. All rights reserved.</p>
+
+    <h3>
+      Glow From The Ground Up
+    </h3>
+
+    <p>
+      Faith. Purpose. Growth. Becoming.
+    </p>
+
+    <div class="footer-note">
+      © 2026 Glow From The Ground Up. All rights reserved.
+    </div>
+
   </footer>
 
 </body>
