@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Glow From The Ground Up</title>
+
+  <meta name="description" content="Helping you rise beyond your beginning. Faith, purpose, mindset, personal growth and opportunity.">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f8f4ed;
+      color: #26382c;
+      line-height: 1.7;
+    }
+
+    h1, h2, h3 {
+      font-family: Georgia, serif;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(248,244,237,0.96);
+      border-bottom: 1px solid #ddd4c5;
+      padding: 18px 6%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-family: Georgia, serif;
+      font-size: 22px;
+      font-weight: bold;
+      color: #31533d;
+    }
+
+    nav a {
+      color: #31533d;
+      text-decoration: none;
+      margin-left: 22px;
+      font-size: 14px;
+    }
+
+    nav a:hover {
+      color: #a55d42;
+    }
+
+    .hero {
+      min-height: 85vh;
+      display: flex;
+      align-items: center;
+      padding: 80px 8%;
+      background:
+        linear-gradient(rgba(35,58,43,.58), rgba(35,58,43,.58)),
+        url("https://images.unsplash.com/photo-1499209974431-9dddcece7f88?auto=format&fit=crop&w=1800&q=85")
+        center/cover;
+      color: white;
+    }
+
+    .hero-content {
+      max-width: 750px;
+    }
+
+    .hero h1 {
+      font-size: clamp(45px, 7vw, 82px);
+      line-height: 1.05;
+      margin-bottom: 25px;
+    }
+
+    .hero p {
+      font-size: 20px;
+      max-width: 650px;
+      margin-bottom: 30px;
+    }
+
+    .button {
+      display: inline-block;
+      background: #c97855;
+      color: white;
+      padding: 14px 26px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: bold;
+      margin-right: 10px;
+    }
+
+    .button.secondary {
+      background: transparent;
+      border: 1px solid white;
+    }
+
+    section {
+      padding: 90px 8%;
+    }
+
+    .section-title {
+      max-width: 750px;
+      margin-bottom: 45px;
+    }
+
+    .section-title h2 {
+      font-size: 45px;
+      margin-bottom: 15px;
+      color: #31533d;
+    }
+
+    .section-title p {
+      color: #68766d;
+      font-size: 18px;
+    }
+
+    .intro {
+      background: #fffaf3;
+      text-align: center;
+    }
+
+    .intro p {
+      max-width: 800px;
+      margin: auto;
+      font-size: 21px;
+      color: #4e5c53;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+
+    .card {
+      background: white;
+      padding: 32px;
+      border-radius: 18px;
+      box-shadow: 0 8px 30px rgba(40,60,45,.07);
+    }
+
+    .card h3 {
+      color: #31533d;
+      font-size: 25px;
+      margin-bottom: 12px;
+    }
+
+    .card p {
+      color: #69746d;
+    }
+
+    .book {
+      background: #e9dfd0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .book-cover {
+      min-height: 480px;
+      border-radius: 10px;
+      background:
+        linear-gradient(rgba(38,56,44,.25), rgba(38,56,44,.25)),
+        url("https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&w=1000&q=85")
+        center/cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      text-align: center;
+      padding: 30px;
+    }
+
+    .book-cover h2 {
+      font-size: 40px;
+    }
+
+    .story {
+      background: #31533d;
+      color: white;
+    }
+
+    .story .section-title h2,
+    .story .section-title p {
+      color: white;
+    }
+
+    .media-card {
+      background: #fffaf3;
+      border-radius: 18px;
+      padding: 30px;
+      text-align: center;
+    }
+
+    .media-icon {
+      font-size: 48px;
+      margin-bottom: 15px;
+    }
+
+    .contact {
+      text-align: center;
+      background: #efe8dc;
+    }
+
+    footer {
+      background: #26382c;
+      color: white;
+      text-align: center;
+      padding: 35px 20px;
+    }
+
+    footer p {
+      opacity: .8;
+    }
+
+    @media(max-width: 800px) {
+      nav {
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      nav a {
+        margin: 0 7px;
+      }
+
+      .cards,
+      .book {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        min-height: 75vh;
+        padding: 60px 7%;
+      }
+
+      section {
+        padding: 65px 7%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <div class="logo">Glow From The Ground Up</div>
+
+    <div>
+      <a href="#about">About</a>
+      <a href="#book">The Book</a>
+      <a href="#stories">Stories</a>
+      <a href="#media">Media</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="hero-content">
+      <p>GLOW FROM THE GROUND UP</p>
+
+      <h1>Helping You Rise Beyond Your Beginning</h1>
+
+      <p>
+        Your beginning is part of your story.
+        It doesn't have to become your identity.
+      </p>
+
+      <a href="#book" class="button">Discover The Book</a>
+      <a href="#stories" class="button secondary">Read Stories</a>
+    </div>
+  </header>
+
+  <section class="intro" id="about">
+    <div class="section-title" style="margin:auto;">
+      <h2>You Can Grow From Where You Are</h2>
+
+      <p>
+        Glow From The Ground Up is a space for faith, purpose,
+        mindset, personal growth and opportunity.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-title">
+      <h2>What We Believe</h2>
+      <p>Growth begins when you start believing that your story can change.</p>
+    </div>
+
+    <div class="cards">
+
+      <div class="card">
+        <h3>Faith</h3>
+        <p>
+          Building a deeper relationship with God and discovering
+          strength through faith.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Purpose</h3>
+        <p>
+          Understanding who you are, where you're going and
+          what you were created to contribute.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Growth</h3>
+        <p>
+          Developing the mindset, skills and courage needed
+          to move beyond your starting point.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="book" id="book">
+
+    <div class="book-cover">
+      <div>
+        <h2>Glow From<br>The Ground Up</h2>
+        <p>A journey of growth, faith and becoming.</p>
+      </div>
+    </div>
+
+    <div>
+      <h2 style="font-size:45px; margin-bottom:20px;">
+        The Book
+      </h2>
+
+      <p style="font-size:18px; margin-bottom:25px;">
+        A story about beginnings, challenges, growth and discovering
+        the person you are becoming.
+      </p>
+
+      <a href="#contact" class="button">Learn More</a>
+    </div>
+
+  </section>
+
+  <section class="story" id="stories">
+
+    <div class="section-title">
+      <h2>Stories That Make Us Grow</h2>
+
+      <p>
+        Real experiences. Lessons learned. Stories of faith,
+        resilience and transformation.
+      </p>
+    </div>
+
+    <div class="cards">
+
+      <div class="card">
+        <h3>My Beginning</h3>
+        <p>
+          Every journey has a starting point.
+          Your beginning does not have to define your destination.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Finding Purpose</h3>
+        <p>
+          Sometimes purpose becomes clearer while we are
+          walking through the journey.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Becoming</h3>
+        <p>
+          Growth is not always loud. Sometimes it happens
+          quietly, one decision at a time.
+        </p>
+      </div>
+
+    </div>
+
+  </section>
+
+  <section id="media">
+
+    <div class="section-title">
+      <h2>Media & Resources</h2>
+
+      <p>
+        Videos, podcasts, conversations and resources
+        to help you keep growing.
+      </p>
+    </div>
+
+    <div class="cards">
+
+      <div class="media-card">
+        <div class="media-icon">🎥</div>
+        <h3>Videos</h3>
+        <p>
+          Watch conversations, teachings and inspiring stories.
+        </p>
+      </div>
+
+      <div class="media-card">
+        <div class="media-icon">🎙️</div>
+        <h3>Podcasts</h3>
+        <p>
+          Listen to conversations about faith, purpose and growth.
+        </p>
+      </div>
+
+      <div class="media-card">
+        <div class="media-icon">📖</div>
+        <h3>Resources</h3>
+        <p>
+          Discover practical resources for your personal journey.
+        </p>
+      </div>
+
+    </div>
+
+  </section>
+
+  <section class="contact" id="contact">
+
+    <div class="section-title" style="margin:auto;">
+      <h2>Start Your Journey</h2>
+
+      <p>
+        You don't have to have everything figured out.
+        You just have to start.
+      </p>
+
+      <br>
+
+      <a href="mailto:hello@glowfromthegroundup.com" class="button">
+        Get In Touch
+      </a>
+    </div>
+
+  </section>
+
+  <footer>
+    <h3>Glow From The Ground Up</h3>
+    <p>Helping you rise beyond your beginning.</p>
+    <br>
+    <p>© 2026 Glow From The Ground Up. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
