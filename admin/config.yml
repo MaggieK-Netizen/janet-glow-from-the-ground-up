@@ -1,0 +1,38 @@
+backend:
+  name: github
+  repo: MaggieK-Netizen/janet-glow-from-the-ground-up
+  branch: main
+
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "stories"
+    label: "Stories"
+    folder: "content/stories"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Story", name: "body", widget: "markdown" }
+
+  - name: "videos"
+    label: "Videos"
+    folder: "content/videos"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Video URL", name: "url", widget: "string" }
+      - { label: "Description", name: "description", widget: "text", required: false }
+
+  - name: "podcasts"
+    label: "Podcasts"
+    folder: "content/podcasts"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Episode Title", name: "title", widget: "string" }
+      - { label: "Podcast URL", name: "url", widget: "string" }
+      - { label: "Description", name: "description", widget: "text", required: false }
