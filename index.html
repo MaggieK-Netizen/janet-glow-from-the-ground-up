@@ -8,7 +8,7 @@
 
   <meta
     name="description"
-    content="Glow From The Ground Up — stories, reflections, podcasts and conversations by Janet."
+    content="Glow From The Ground Up — stories, conversations, podcasts and reflections by Janet."
   >
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -25,13 +25,14 @@
       --white: #ffffff;
       --text: #26352d;
       --muted: #718078;
-      --border: #ddd5c9;
+      --border: rgba(41, 69, 56, 0.12);
+      --shadow: 0 18px 45px rgba(29, 48, 39, 0.10);
     }
 
     * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
     }
 
     html {
@@ -55,6 +56,11 @@
       display: block;
     }
 
+    .container {
+      width: min(1120px, 92%);
+      margin: auto;
+    }
+
     /* NAVIGATION */
     nav {
       position: sticky;
@@ -66,27 +72,35 @@
     }
 
     .nav-inner {
-      max-width: 1200px;
-      margin: auto;
-      padding: 18px 25px;
+      min-height: 76px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 30px;
+      gap: 25px;
     }
 
     .logo {
       font-size: 1.35rem;
       font-weight: bold;
       color: var(--forest);
-      letter-spacing: 0.5px;
+      letter-spacing: 0.02em;
+    }
+
+    .logo span {
+      color: var(--terracotta);
     }
 
     .nav-links {
       display: flex;
       gap: 25px;
-      list-style: none;
-      font-size: 0.95rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      font-size: 0.92rem;
+      color: var(--forest);
+      transition: 0.2s ease;
     }
 
     .nav-links a:hover {
@@ -115,99 +129,93 @@
     }
 
     .hero-content {
-      max-width: 1200px;
-      width: 100%;
-      margin: auto;
-      padding: 80px 25px;
+      max-width: 720px;
+      padding: 90px 0;
     }
 
     .eyebrow {
       text-transform: uppercase;
-      letter-spacing: 3px;
-      font-size: 0.8rem;
+      letter-spacing: 0.22em;
+      font-size: 0.78rem;
       margin-bottom: 20px;
-      color: #e4c993;
+      color: #e5c990;
+      font-weight: bold;
     }
 
     .hero h1 {
-      max-width: 800px;
       font-size: clamp(3rem, 7vw, 6rem);
-      line-height: 1.02;
-      margin-bottom: 25px;
-      font-weight: 500;
+      line-height: 0.98;
+      margin-bottom: 28px;
+      max-width: 800px;
     }
 
     .hero p {
+      font-size: 1.15rem;
       max-width: 650px;
-      font-size: 1.2rem;
-      color: rgba(255,255,255,0.9);
-      margin-bottom: 35px;
+      color: rgba(255,255,255,0.88);
+      margin-bottom: 34px;
     }
 
-    .button {
+    .btn {
       display: inline-block;
-      padding: 13px 25px;
-      border-radius: 4px;
+      padding: 14px 25px;
+      border-radius: 40px;
       background: var(--terracotta);
       color: white;
-      font-family: Arial, sans-serif;
-      font-size: 0.9rem;
       font-weight: bold;
-      transition: 0.25s;
+      transition: 0.2s ease;
+      border: none;
+      cursor: pointer;
     }
 
-    .button:hover {
+    .btn:hover {
       transform: translateY(-2px);
-      opacity: 0.9;
+      opacity: 0.92;
     }
 
-    .button-light {
-      background: transparent;
-      border: 1px solid rgba(255,255,255,0.7);
+    .btn-light {
+      background: white;
+      color: var(--forest);
       margin-left: 10px;
     }
 
-    /* GENERAL */
+    /* SECTIONS */
     section {
-      padding: 90px 25px;
+      padding: 90px 0;
     }
 
-    .container {
-      max-width: 1100px;
-      margin: auto;
+    .section-heading {
+      max-width: 720px;
+      margin-bottom: 45px;
     }
 
-    .section-label {
+    .section-heading .eyebrow {
       color: var(--terracotta);
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      font-family: Arial, sans-serif;
-      font-size: 0.75rem;
-      font-weight: bold;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
 
-    .section-title {
-      font-size: clamp(2rem, 4vw, 3.3rem);
+    .section-heading h2 {
       color: var(--forest);
-      margin-bottom: 20px;
-      font-weight: 500;
+      font-size: clamp(2.2rem, 5vw, 3.7rem);
+      line-height: 1.1;
+      margin-bottom: 18px;
     }
 
-    .section-intro {
-      max-width: 700px;
-      font-size: 1.1rem;
+    .section-heading p {
       color: var(--muted);
     }
 
     /* INTRO */
     .intro {
-      background: var(--cream);
+      background: var(--white);
       text-align: center;
     }
 
-    .intro .section-intro {
+    .intro-text {
+      max-width: 800px;
       margin: auto;
+      font-size: 1.3rem;
+      color: var(--forest);
     }
 
     /* BELIEFS */
@@ -219,49 +227,64 @@
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 25px;
-      margin-top: 45px;
     }
 
-    .belief {
-      background: rgba(255,255,255,0.55);
+    .belief-card {
+      background: var(--white);
       padding: 35px;
-      border: 1px solid var(--border);
+      border-radius: 20px;
+      box-shadow: var(--shadow);
     }
 
-    .belief h3 {
+    .belief-number {
+      font-size: 2rem;
+      color: var(--terracotta);
+      margin-bottom: 15px;
+    }
+
+    .belief-card h3 {
       color: var(--forest);
       margin-bottom: 12px;
       font-size: 1.35rem;
     }
 
-    .belief p {
+    .belief-card p {
       color: var(--muted);
     }
 
     /* ABOUT */
     .about {
-      background: white;
+      background: var(--cream);
     }
 
     .about-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 0.9fr 1.1fr;
       gap: 60px;
       align-items: center;
     }
 
     .about-image {
-      min-height: 500px;
+      min-height: 560px;
+      border-radius: 25px;
       background:
         linear-gradient(
-          rgba(29,48,39,0.12),
-          rgba(29,48,39,0.12)
+          rgba(29,48,39,0.08),
+          rgba(29,48,39,0.08)
         ),
         url("WhatsApp Image 2026-09-24 at 18.28.36.jpeg")
         center/cover;
+      box-shadow: var(--shadow);
     }
 
-    .about-text p {
+    .about-copy h2 {
+      font-size: 3rem;
+      color: var(--forest);
+      line-height: 1.1;
+      margin-bottom: 22px;
+    }
+
+    .about-copy p {
       margin-bottom: 18px;
       color: var(--muted);
     }
@@ -274,63 +297,60 @@
 
     .book-grid {
       display: grid;
-      grid-template-columns: 0.8fr 1.2fr;
-      gap: 65px;
+      grid-template-columns: 0.7fr 1.3fr;
+      gap: 60px;
       align-items: center;
     }
 
     .book-cover {
-      min-height: 500px;
+      min-height: 470px;
+      border-radius: 18px;
       background:
         linear-gradient(
-          rgba(20,38,29,0.15),
-          rgba(20,38,29,0.15)
+          rgba(29,48,39,0.25),
+          rgba(29,48,39,0.25)
         ),
         url("WhatsApp Image 2026-09-24 at 18.28.36.jpeg")
         center/cover;
-
-      box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+      box-shadow: 0 25px 60px rgba(0,0,0,0.25);
     }
 
-    .book .section-label {
-      color: #e4c993;
+    .book-copy h2 {
+      font-size: 3rem;
+      line-height: 1.1;
+      margin-bottom: 20px;
     }
 
-    .book .section-title {
-      color: white;
-    }
-
-    .book p {
-      color: rgba(255,255,255,0.78);
-      margin-bottom: 25px;
+    .book-copy p {
+      color: rgba(255,255,255,0.75);
+      margin-bottom: 20px;
     }
 
     /* CONTENT */
-    .stories {
-      background: var(--cream);
+    .content-section {
+      background: var(--white);
     }
 
     .content-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 25px;
-      margin-top: 45px;
     }
 
     .content-card {
-      background: white;
-      border: 1px solid var(--border);
+      border-radius: 18px;
       overflow: hidden;
-      display: flex;
-      flex-direction: column;
+      background: var(--cream);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
     }
 
     .content-image {
-      height: 210px;
+      height: 230px;
       background:
         linear-gradient(
-          rgba(41,69,56,0.18),
-          rgba(41,69,56,0.18)
+          rgba(29,48,39,0.12),
+          rgba(29,48,39,0.12)
         ),
         url("WhatsApp Image 2026-09-24 at 18.28.36.jpeg")
         center/cover;
@@ -338,63 +358,46 @@
 
     .content-body {
       padding: 25px;
-      flex: 1;
     }
 
     .content-type {
-      color: var(--terracotta);
-      font-family: Arial, sans-serif;
       text-transform: uppercase;
-      font-size: 0.7rem;
-      letter-spacing: 1.5px;
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      color: var(--terracotta);
       font-weight: bold;
-      margin-bottom: 8px;
-    }
-
-    .content-card h3 {
-      color: var(--forest);
-      font-size: 1.35rem;
       margin-bottom: 10px;
     }
 
-    .content-card p {
-      color: var(--muted);
-      font-size: 0.95rem;
+    .content-body h3 {
+      color: var(--forest);
+      margin-bottom: 10px;
+      font-size: 1.35rem;
     }
 
-    .content-link {
-      display: inline-block;
-      margin-top: 18px;
+    .content-body p {
+      color: var(--muted);
+      margin-bottom: 15px;
+    }
+
+    .read-more {
       color: var(--terracotta);
-      font-family: Arial, sans-serif;
-      font-size: 0.85rem;
       font-weight: bold;
     }
 
     .empty-message {
       grid-column: 1 / -1;
-      padding: 35px;
-      background: white;
       text-align: center;
+      padding: 35px;
       color: var(--muted);
-      border: 1px dashed var(--border);
-    }
-
-    /* MEDIA */
-    .media {
-      background: var(--soft);
-    }
-
-    .media-section {
-      margin-top: 65px;
-    }
-
-    .media-section:first-child {
-      margin-top: 45px;
+      background: var(--cream);
+      border-radius: 15px;
     }
 
     /* JOURNEY */
     .journey {
+      color: white;
+      text-align: center;
       background:
         linear-gradient(
           rgba(29,48,39,0.88),
@@ -402,69 +405,81 @@
         ),
         url("WhatsApp Image 2026-09-24 at 18.28.36.jpeg")
         center/cover;
-
-      color: white;
-      text-align: center;
     }
 
-    .journey .section-title {
-      color: white;
+    .journey-inner {
+      max-width: 780px;
+      margin: auto;
     }
 
-    .journey .section-intro {
-      color: rgba(255,255,255,0.8);
-      margin: 0 auto 30px;
+    .journey h2 {
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      line-height: 1.05;
+      margin-bottom: 22px;
+    }
+
+    .journey p {
+      color: rgba(255,255,255,0.82);
+      margin-bottom: 30px;
+      font-size: 1.1rem;
     }
 
     /* CONTACT */
     .contact {
-      background: white;
+      background: var(--soft);
       text-align: center;
+    }
+
+    .contact-box {
+      max-width: 720px;
+      margin: auto;
+    }
+
+    .contact h2 {
+      color: var(--forest);
+      font-size: 3rem;
+      margin-bottom: 15px;
     }
 
     .contact p {
       color: var(--muted);
-      max-width: 600px;
-      margin: 0 auto 25px;
+      margin-bottom: 25px;
     }
 
     /* FOOTER */
     footer {
       background: var(--deep);
-      color: rgba(255,255,255,0.7);
-      padding: 35px 25px;
+      color: white;
+      padding: 35px 0;
       text-align: center;
-      font-family: Arial, sans-serif;
-      font-size: 0.85rem;
+    }
+
+    footer p {
+      color: rgba(255,255,255,0.65);
+      font-size: 0.9rem;
     }
 
     /* MOBILE */
     @media (max-width: 800px) {
-
       .nav-inner {
         flex-direction: column;
-        padding: 15px;
+        padding: 18px 0;
       }
 
       .nav-links {
-        flex-wrap: wrap;
         justify-content: center;
         gap: 14px;
       }
 
       .hero {
-        min-height: 80vh;
+        min-height: 78vh;
       }
 
       .hero h1 {
-        font-size: 3rem;
+        font-size: 3.4rem;
       }
 
-      .hero p {
-        font-size: 1rem;
-      }
-
-      .button-light {
+      .btn-light {
         margin-left: 0;
         margin-top: 10px;
       }
@@ -476,13 +491,12 @@
         grid-template-columns: 1fr;
       }
 
-      .about-image,
-      .book-cover {
-        min-height: 400px;
+      .about-image {
+        min-height: 430px;
       }
 
-      section {
-        padding: 65px 20px;
+      .book-cover {
+        min-height: 430px;
       }
     }
   </style>
@@ -492,363 +506,296 @@
 
   <!-- NAVIGATION -->
   <nav>
-    <div class="nav-inner">
-
+    <div class="container nav-inner">
       <a href="#home" class="logo">
-        Glow From The Ground Up
+        Glow <span>From The Ground Up</span>
       </a>
 
-      <ul class="nav-links">
-        <li><a href="#about">About</a></li>
-        <li><a href="#book">The Book</a></li>
-        <li><a href="#stories">Stories</a></li>
-        <li><a href="#media">Media</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#book">Book</a>
+        <a href="#stories">Stories</a>
+        <a href="#media">Media</a>
+        <a href="#contact">Contact</a>
+      </div>
     </div>
   </nav>
 
-
   <!-- HERO -->
   <header class="hero" id="home">
+    <div class="container">
+      <div class="hero-content">
+        <div class="eyebrow">Glow From The Ground Up</div>
 
-    <div class="hero-content">
+        <h1>
+          Your story can become your strength.
+        </h1>
 
-      <div class="eyebrow">
-        Glow From The Ground Up
+        <p>
+          A space for honest stories, meaningful conversations,
+          personal growth and the courage to keep becoming.
+        </p>
+
+        <a href="#stories" class="btn">
+          Read the stories
+        </a>
+
+        <a href="#about" class="btn btn-light">
+          Meet Janet
+        </a>
       </div>
-
-      <h1>
-        You can rise beyond your beginning.
-      </h1>
-
-      <p>
-        A space for stories, healing, courage, growth and the
-        beautiful journey of becoming who you were created to be.
-      </p>
-
-      <a href="#stories" class="button">
-        Explore the Stories
-      </a>
-
-      <a href="#about" class="button button-light">
-        Meet Janet
-      </a>
-
     </div>
-
   </header>
-
 
   <!-- INTRO -->
   <section class="intro">
-
     <div class="container">
-
-      <div class="section-label">
-        Welcome
-      </div>
-
-      <h2 class="section-title">
-        There is more to your story.
-      </h2>
-
-      <p class="section-intro">
-        Glow From The Ground Up is a reminder that where you start
-        does not have to determine where you end. Through honest
-        stories, conversations and reflections, Janet creates space
-        for people to find courage, hope and purpose.
+      <p class="intro-text">
+        Sometimes the most powerful glow doesn't begin on the surface.
+        It begins deep within — from the places where we have struggled,
+        learned, healed, grown and found our voice.
       </p>
-
     </div>
-
   </section>
-
 
   <!-- BELIEFS -->
   <section class="beliefs">
-
     <div class="container">
 
-      <div class="section-label">
-        What We Believe
-      </div>
+      <div class="section-heading">
+        <div class="eyebrow">What this space believes</div>
 
-      <h2 class="section-title">
-        Growth can begin anywhere.
-      </h2>
+        <h2>
+          There is power in becoming.
+        </h2>
+
+        <p>
+          Glow From The Ground Up is built around honest reflection,
+          resilience and the belief that every chapter can teach us
+          something.
+        </p>
+      </div>
 
       <div class="belief-grid">
 
-        <div class="belief">
-          <h3>Your beginning matters.</h3>
-
+        <div class="belief-card">
+          <div class="belief-number">01</div>
+          <h3>Your story matters</h3>
           <p>
-            Every experience shapes us, but no experience has to
-            become the final definition of who we are.
+            Every experience has something to teach, even the chapters
+            we once wished we could forget.
           </p>
         </div>
 
-        <div class="belief">
-          <h3>Your voice matters.</h3>
-
+        <div class="belief-card">
+          <div class="belief-number">02</div>
+          <h3>Growth takes time</h3>
           <p>
-            There is power in sharing honest stories and creating
-            room for others to feel seen and heard.
+            Becoming who we are meant to be is a journey, not a race.
           </p>
         </div>
 
-        <div class="belief">
-          <h3>Your growth matters.</h3>
-
+        <div class="belief-card">
+          <div class="belief-number">03</div>
+          <h3>We don't grow alone</h3>
           <p>
-            Becoming takes time. Every small step forward is still
-            movement.
+            Honest conversations can remind us that we are not the only
+            ones navigating life's difficult seasons.
           </p>
         </div>
 
       </div>
-
     </div>
-
   </section>
 
-
-  <!-- ABOUT JANET -->
+  <!-- ABOUT -->
   <section class="about" id="about">
-
     <div class="container about-grid">
 
       <div class="about-image"></div>
 
-      <div class="about-text">
+      <div class="about-copy">
+        <div class="eyebrow">Meet Janet</div>
 
-        <div class="section-label">
-          About Janet
-        </div>
-
-        <h2 class="section-title">
-          A voice for becoming.
+        <h2>
+          A voice for stories, growth and real life.
         </h2>
 
         <p>
-          Janet believes that our stories have the power to connect,
-          encourage and transform us.
+          Janet's work is rooted in honest conversations and the
+          experiences that shape us.
         </p>
 
         <p>
-          Through writing, conversations and personal reflections,
-          she explores the experiences that shape us — and the
-          courage it takes to keep growing.
+          Through writing, storytelling, podcasts and conversations,
+          Glow From The Ground Up creates room for reflection,
+          encouragement and connection.
         </p>
 
         <p>
-          Glow From The Ground Up is her invitation to anyone who
-          has ever wondered whether their beginning is too difficult,
-          too ordinary or too painful to become something beautiful.
+          This is a place to pause, listen, learn and remember that
+          growth can start from anywhere.
         </p>
-
       </div>
 
     </div>
-
   </section>
-
 
   <!-- BOOK -->
   <section class="book" id="book">
-
     <div class="container book-grid">
 
       <div class="book-cover"></div>
 
-      <div>
+      <div class="book-copy">
+        <div class="eyebrow">Janet's Book</div>
 
-        <div class="section-label">
-          Janet's Book
-        </div>
-
-        <h2 class="section-title">
-          Glow From The Ground Up
+        <h2>
+          Stories that meet you where you are.
         </h2>
 
         <p>
-          A story about finding light, discovering strength and
-          learning that growth is possible even when life does not
-          begin the way we imagined.
+          Explore Janet's written work and discover reflections,
+          experiences and lessons gathered along the journey.
         </p>
 
         <p>
-          More information about the book, purchasing and upcoming
-          releases can be added here.
+          More information about the book will be shared here.
         </p>
 
-        <a href="#contact" class="button">
-          Get In Touch
+        <a href="#contact" class="btn">
+          Get in touch
         </a>
-
       </div>
 
     </div>
-
   </section>
 
-
   <!-- STORIES -->
-  <section class="stories" id="stories">
-
+  <section class="content-section" id="stories">
     <div class="container">
 
-      <div class="section-label">
-        Stories
+      <div class="section-heading">
+        <div class="eyebrow">Stories</div>
+
+        <h2>
+          From the ground up.
+        </h2>
+
+        <p>
+          Personal stories, reflections and experiences from Janet's
+          journey.
+        </p>
       </div>
 
-      <h2 class="section-title">
-        Stories that speak to the heart.
-      </h2>
-
-      <p class="section-intro">
-        Janet's latest stories will appear here automatically when
-        they are added from the private dashboard.
-      </p>
-
-      <div id="stories-container" class="content-grid">
-
+      <div class="content-grid" id="stories-container">
         <div class="empty-message">
           Loading Janet's stories...
         </div>
-
       </div>
 
     </div>
-
   </section>
 
-
   <!-- MEDIA -->
-  <section class="media" id="media">
+  <section class="content-section" id="media">
 
     <div class="container">
 
-      <div class="section-label">
-        Media
-      </div>
-
-      <h2 class="section-title">
-        Listen. Watch. Reflect.
-      </h2>
-
-      <p class="section-intro">
-        Podcasts and videos from Janet will appear here as they are
-        published through the dashboard.
-      </p>
-
-
       <!-- VIDEOS -->
-      <div class="media-section">
+      <div class="section-heading">
+        <div class="eyebrow">Videos</div>
 
-        <h3 class="section-title" style="font-size:2rem;">
-          Videos
-        </h3>
+        <h2>
+          Watch & listen.
+        </h2>
 
-        <div id="videos-container" class="content-grid">
-
-          <div class="empty-message">
-            Loading videos...
-          </div>
-
-        </div>
-
+        <p>
+          Conversations, reflections and moments shared through video.
+        </p>
       </div>
 
+      <div class="content-grid" id="videos-container">
+        <div class="empty-message">
+          Loading Janet's videos...
+        </div>
+      </div>
+
+      <br><br><br>
 
       <!-- PODCASTS -->
-      <div class="media-section">
+      <div class="section-heading">
+        <div class="eyebrow">Podcasts</div>
 
-        <h3 class="section-title" style="font-size:2rem;">
-          Podcasts
-        </h3>
+        <h2>
+          Conversations that matter.
+        </h2>
 
-        <div id="podcasts-container" class="content-grid">
+        <p>
+          Listen to Janet's conversations, reflections and podcast episodes.
+        </p>
+      </div>
 
-          <div class="empty-message">
-            Loading podcasts...
-          </div>
-
+      <div class="content-grid" id="podcasts-container">
+        <div class="empty-message">
+          Loading Janet's podcasts...
         </div>
-
       </div>
 
     </div>
-
   </section>
-
 
   <!-- JOURNEY -->
   <section class="journey">
+    <div class="container journey-inner">
 
-    <div class="container">
+      <div class="eyebrow">The journey continues</div>
 
-      <div class="section-label">
-        Your Journey
-      </div>
-
-      <h2 class="section-title">
-        You are allowed to begin again.
+      <h2>
+        Keep growing. Keep becoming. Keep glowing.
       </h2>
 
-      <p class="section-intro">
-        Whatever your beginning looks like, there is still room
-        for growth, purpose and a new chapter.
+      <p>
+        Every chapter is part of the journey.
+        There is always another story to tell.
       </p>
 
-      <a href="#contact" class="button">
-        Connect With Janet
+      <a href="#contact" class="btn">
+        Connect with Janet
       </a>
 
     </div>
-
   </section>
-
 
   <!-- CONTACT -->
   <section class="contact" id="contact">
+    <div class="container contact-box">
 
-    <div class="container">
+      <div class="eyebrow">Get in touch</div>
 
-      <div class="section-label">
-        Contact
-      </div>
-
-      <h2 class="section-title">
+      <h2>
         Let's connect.
       </h2>
 
       <p>
-        For collaborations, speaking opportunities, interviews,
-        book conversations and other enquiries, get in touch with Janet.
+        For conversations, collaborations, speaking opportunities,
+        the book or simply to share your story.
       </p>
 
-      <a
-        href="mailto:hello@glowfromthegroundup.com"
-        class="button"
-      >
+      <a href="mailto:" class="btn">
         Contact Janet
       </a>
 
     </div>
-
   </section>
-
 
   <!-- FOOTER -->
   <footer>
-
-    <p>
-      © 2026 Glow From The Ground Up. All rights reserved.
-    </p>
-
+    <div class="container">
+      <p>
+        © 2026 Glow From The Ground Up. All rights reserved.
+      </p>
+    </div>
   </footer>
 
 
@@ -859,7 +806,7 @@
       "https://jlmvggfzbjimeihmeary.supabase.co";
 
     const SUPABASE_KEY =
-      "sb_publishable_sb5WVvAu8NfVduj9hH2cIA_amPhWx2z";
+      "sb_publishable_sb5WVvAu8NfVdju9hH2cIA_amPhWx2z";
 
     const supabaseClient =
       supabase.createClient(
@@ -878,7 +825,6 @@
         .replace(/>/g, "&gt;")
         .replace(/"/g, "&quot;")
         .replace(/'/g, "&#039;");
-
     }
 
 
@@ -891,25 +837,23 @@
         escapeHTML(
           item.description ||
           item.body ||
-          ""
+          "Read more from Janet."
         );
 
       const type =
-        escapeHTML(item.type || "content");
+        escapeHTML(item.type || "");
 
-      const thumbnail =
-        item.thumbnail_url
-          ? escapeHTML(item.thumbnail_url)
-          : "WhatsApp Image 2026-09-24 at 18.28.36.jpeg";
+      const image =
+        item.thumbnail_url ||
+        "WhatsApp Image 2026-09-24 at 18.28.36.jpeg";
 
-
-      let link = "";
+      let mediaButton = "";
 
       if (item.media_url) {
 
-        link = `
+        mediaButton = `
           <a
-            class="content-link"
+            class="read-more"
             href="${escapeHTML(item.media_url)}"
             target="_blank"
             rel="noopener noreferrer"
@@ -917,23 +861,20 @@
             View / Listen →
           </a>
         `;
-
       }
 
-
       return `
-
         <article class="content-card">
 
           <div
             class="content-image"
             style="
               background-image:
-              linear-gradient(
-                rgba(41,69,56,0.18),
-                rgba(41,69,56,0.18)
-              ),
-              url('${thumbnail}');
+                linear-gradient(
+                  rgba(29,48,39,0.12),
+                  rgba(29,48,39,0.12)
+                ),
+                url('${escapeHTML(image)}');
             "
           ></div>
 
@@ -951,147 +892,175 @@
               ${description}
             </p>
 
-            ${link}
+            ${mediaButton}
 
           </div>
 
         </article>
-
       `;
-
     }
 
 
     async function loadContent() {
 
-      const {
-        data,
-        error
-      } = await supabaseClient
-        .from("content")
-        .select("*")
-        .eq("published", true)
-        .order("created_at", {
-          ascending: false
-        });
+      const storiesContainer =
+        document.getElementById("stories-container");
+
+      const videosContainer =
+        document.getElementById("videos-container");
+
+      const podcastsContainer =
+        document.getElementById("podcasts-container");
 
 
-      if (error) {
+      try {
+
+        const {
+          data,
+          error
+        } = await supabaseClient
+          .from("content")
+          .select("*")
+          .eq("published", true)
+          .order("created_at", {
+            ascending: false
+          });
+
+
+        if (error) {
+
+          console.error(
+            "Supabase error:",
+            error
+          );
+
+          storiesContainer.innerHTML = `
+            <div class="empty-message">
+              Stories are temporarily unavailable.
+            </div>
+          `;
+
+          videosContainer.innerHTML = `
+            <div class="empty-message">
+              Videos are temporarily unavailable.
+            </div>
+          `;
+
+          podcastsContainer.innerHTML = `
+            <div class="empty-message">
+              Podcasts are temporarily unavailable.
+            </div>
+          `;
+
+          return;
+        }
+
+
+        const items = data || [];
+
+
+        const stories =
+          items.filter(
+            item =>
+              String(item.type || "")
+                .toLowerCase()
+                .trim() === "story"
+          );
+
+
+        const videos =
+          items.filter(
+            item =>
+              String(item.type || "")
+                .toLowerCase()
+                .trim() === "video"
+          );
+
+
+        const podcasts =
+          items.filter(
+            item =>
+              String(item.type || "")
+                .toLowerCase()
+                .trim() === "podcast"
+          );
+
+
+        if (stories.length) {
+
+          storiesContainer.innerHTML =
+            stories
+              .map(createContentCard)
+              .join("");
+
+        } else {
+
+          storiesContainer.innerHTML = `
+            <div class="empty-message">
+              Janet's stories will appear here soon.
+            </div>
+          `;
+
+        }
+
+
+        if (videos.length) {
+
+          videosContainer.innerHTML =
+            videos
+              .map(createContentCard)
+              .join("");
+
+        } else {
+
+          videosContainer.innerHTML = `
+            <div class="empty-message">
+              Janet's videos will appear here soon.
+            </div>
+          `;
+
+        }
+
+
+        if (podcasts.length) {
+
+          podcastsContainer.innerHTML =
+            podcasts
+              .map(createContentCard)
+              .join("");
+
+        } else {
+
+          podcastsContainer.innerHTML = `
+            <div class="empty-message">
+              Janet's podcasts will appear here soon.
+            </div>
+          `;
+
+        }
+
+      } catch (err) {
 
         console.error(
-          "Supabase error:",
-          error
+          "Content loading error:",
+          err
         );
 
-        document.getElementById(
-          "stories-container"
-        ).innerHTML = `
+        storiesContainer.innerHTML = `
           <div class="empty-message">
             Stories are temporarily unavailable.
           </div>
         `;
 
-        document.getElementById(
-          "videos-container"
-        ).innerHTML = `
+        videosContainer.innerHTML = `
           <div class="empty-message">
             Videos are temporarily unavailable.
           </div>
         `;
 
-        document.getElementById(
-          "podcasts-container"
-        ).innerHTML = `
-          <div class="empty-message">
-            Podcasts are temporarily unavailable.
-          </div>
-        `;
-
-        return;
-
-      }
-
-
-      const stories =
-        (data || []).filter(
-          item => item.type === "story"
-        );
-
-      const videos =
-        (data || []).filter(
-          item => item.type === "video"
-        );
-
-      const podcasts =
-        (data || []).filter(
-          item => item.type === "podcast"
-        );
-
-
-      const storiesContainer =
-        document.getElementById(
-          "stories-container"
-        );
-
-      const videosContainer =
-        document.getElementById(
-          "videos-container"
-        );
-
-      const podcastsContainer =
-        document.getElementById(
-          "podcasts-container"
-        );
-
-
-      if (stories.length) {
-
-        storiesContainer.innerHTML =
-          stories
-            .map(createContentCard)
-            .join("");
-
-      } else {
-
-        storiesContainer.innerHTML = `
-          <div class="empty-message">
-            Janet's stories will appear here soon.
-          </div>
-        `;
-
-      }
-
-
-      if (videos.length) {
-
-        videosContainer.innerHTML =
-          videos
-            .map(createContentCard)
-            .join("");
-
-      } else {
-
-        videosContainer.innerHTML = `
-          <div class="empty-message">
-            Janet's videos will appear here soon.
-          </div>
-        `;
-
-      }
-
-
-      if (podcasts.length) {
-
-        podcastsContainer.innerHTML =
-          podcasts
-            .map(createContentCard)
-            .join("");
-
-      } else {
-
         podcastsContainer.innerHTML = `
           <div class="empty-message">
-            Janet's podcasts will appear here soon.
+            Podcasts are temporarily unavailable.
           </div>
         `;
 
