@@ -1,12 +1,625 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Janet's Admin</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Janet | Content Dashboard</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #fff7fb;
+      color: #3d2935;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .login-page {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: linear-gradient(135deg, #fff7fb, #f9e4ef);
+    }
+
+    .login-box {
+      width: 100%;
+      max-width: 420px;
+      background: white;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 15px 45px rgba(100, 50, 80, 0.12);
+    }
+
+    .logo {
+      text-align: center;
+      font-size: 30px;
+      font-weight: bold;
+      color: #a84d78;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #806b76;
+      margin-bottom: 30px;
+    }
+
+    label {
+      display: block;
+      margin: 15px 0 7px;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #e3cbd7;
+      border-radius: 10px;
+      font-size: 15px;
+      background: white;
+    }
+
+    textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    button {
+      border: none;
+      border-radius: 10px;
+      padding: 12px 18px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .primary {
+      width: 100%;
+      margin-top: 22px;
+      background: #a84d78;
+      color: white;
+    }
+
+    .primary:hover {
+      background: #913e66;
+    }
+
+    .message {
+      margin-top: 15px;
+      text-align: center;
+      color: #b3261e;
+      font-size: 14px;
+    }
+
+    .dashboard {
+      min-height: 100vh;
+    }
+
+    header {
+      background: white;
+      border-bottom: 1px solid #ecd9e2;
+      padding: 18px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header h1 {
+      margin: 0;
+      color: #a84d78;
+      font-size: 24px;
+    }
+
+    .logout {
+      background: #f5e1ea;
+      color: #7f3158;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+
+    .welcome {
+      margin-bottom: 25px;
+    }
+
+    .welcome h2 {
+      margin-bottom: 5px;
+    }
+
+    .tabs {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 25px;
+    }
+
+    .tab {
+      background: white;
+      color: #7f3158;
+      border: 1px solid #e4cbd8;
+    }
+
+    .tab.active {
+      background: #a84d78;
+      color: white;
+    }
+
+    .card {
+      background: white;
+      padding: 25px;
+      border-radius: 16px;
+      box-shadow: 0 5px 20px rgba(100, 50, 80, 0.07);
+      margin-bottom: 20px;
+    }
+
+    .content-item {
+      border-bottom: 1px solid #eee0e6;
+      padding: 18px 0;
+    }
+
+    .content-item:last-child {
+      border-bottom: none;
+    }
+
+    .content-item h3 {
+      margin: 0 0 6px;
+      color: #7f3158;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 5px 9px;
+      border-radius: 20px;
+      font-size: 12px;
+      margin-bottom: 8px;
+    }
+
+    .published {
+      background: #e2f5e8;
+      color: #27733b;
+    }
+
+    .draft {
+      background: #f4e9d4;
+      color: #805b19;
+    }
+
+    .actions {
+      display: flex;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .edit {
+      background: #eee5f8;
+      color: #633f82;
+    }
+
+    .delete {
+      background: #fbe1e1;
+      color: #a32626;
+    }
+
+    .empty {
+      text-align: center;
+      padding: 35px;
+      color: #8d7883;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+
+    @media (max-width: 700px) {
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      header {
+        padding: 15px;
+      }
+    }
+  </style>
 </head>
 
 <body>
-  <script src="https://unpkg.com/decap-cms@3.8.3/dist/decap-cms.js"></script>
+
+  <!-- LOGIN -->
+  <section id="loginPage" class="login-page">
+    <div class="login-box">
+      <div class="logo">Janet</div>
+      <div class="subtitle">Content Dashboard</div>
+
+      <form id="loginForm">
+        <label>Email</label>
+        <input id="email" type="email" required>
+
+        <label>Password</label>
+        <input id="password" type="password" required>
+
+        <button class="primary" type="submit">Login</button>
+
+        <div id="loginMessage" class="message"></div>
+      </form>
+    </div>
+  </section>
+
+  <!-- DASHBOARD -->
+  <section id="dashboard" class="dashboard hidden">
+
+    <header>
+      <h1>Janet's Dashboard</h1>
+      <button id="logoutBtn" class="logout">Logout</button>
+    </header>
+
+    <main class="container">
+
+      <div class="welcome">
+        <h2>Welcome, Janet 👋</h2>
+        <p>Add and manage your stories, podcasts and videos here.</p>
+      </div>
+
+      <div class="tabs">
+        <button class="tab active" data-type="all">All Content</button>
+        <button class="tab" data-type="story">Stories</button>
+        <button class="tab" data-type="podcast">Podcasts</button>
+        <button class="tab" data-type="video">Videos</button>
+        <button class="tab" data-type="new">+ Add Content</button>
+      </div>
+
+      <!-- ADD CONTENT -->
+      <div id="formCard" class="card hidden">
+
+        <h2 id="formTitle">Add Content</h2>
+
+        <form id="contentForm">
+
+          <div class="form-grid">
+
+            <div>
+              <label>Content Type</label>
+              <select id="contentType" required>
+                <option value="story">Story</option>
+                <option value="podcast">Podcast</option>
+                <option value="video">Video</option>
+              </select>
+            </div>
+
+            <div>
+              <label>Title</label>
+              <input id="contentTitle" type="text" required>
+            </div>
+
+          </div>
+
+          <label>Short Description</label>
+          <textarea id="contentDescription" placeholder="A short introduction..."></textarea>
+
+          <label>Story / Content</label>
+          <textarea id="contentBody" placeholder="Write the full story or content here..."></textarea>
+
+          <label>Media URL</label>
+          <input id="mediaUrl" type="url" placeholder="Paste YouTube, Spotify or media link">
+
+          <label>Thumbnail URL</label>
+          <input id="thumbnailUrl" type="url" placeholder="Optional image URL">
+
+          <label>
+            <input id="published" type="checkbox" style="width:auto;">
+            Publish this content
+          </label>
+
+          <button class="primary" type="submit">Save Content</button>
+
+          <div id="formMessage" class="message"></div>
+
+        </form>
+      </div>
+
+      <!-- CONTENT LIST -->
+      <div id="contentCard" class="card">
+        <h2>Your Content</h2>
+        <div id="contentList">
+          <div class="empty">Loading content...</div>
+        </div>
+      </div>
+
+    </main>
+  </section>
+
+<script>
+  const SUPABASE_URL = "https://jlmvggfzbjimeihmeary.supabase.co";
+  const SUPABASE_KEY = "sb_publishable_sb5WVvAu8NfVdju9hH2cIA_amPhWx2z";
+
+  const supabaseClient = supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+  );
+
+  let editingId = null;
+  let currentFilter = "all";
+
+  const loginPage = document.getElementById("loginPage");
+  const dashboard = document.getElementById("dashboard");
+  const loginForm = document.getElementById("loginForm");
+  const loginMessage = document.getElementById("loginMessage");
+  const contentForm = document.getElementById("contentForm");
+  const contentList = document.getElementById("contentList");
+  const formCard = document.getElementById("formCard");
+  const formTitle = document.getElementById("formTitle");
+  const formMessage = document.getElementById("formMessage");
+
+  async function checkSession() {
+    const { data } = await supabaseClient.auth.getSession();
+
+    if (data.session) {
+      showDashboard();
+    } else {
+      showLogin();
+    }
+  }
+
+  function showLogin() {
+    loginPage.classList.remove("hidden");
+    dashboard.classList.add("hidden");
+  }
+
+  function showDashboard() {
+    loginPage.classList.add("hidden");
+    dashboard.classList.remove("hidden");
+    loadContent();
+  }
+
+  loginForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    loginMessage.textContent = "Logging in...";
+
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+
+    const { error } = await supabaseClient.auth.signInWithPassword({
+      email,
+      password
+    });
+
+    if (error) {
+      loginMessage.textContent = error.message;
+      return;
+    }
+
+    loginMessage.textContent = "";
+    showDashboard();
+  });
+
+  document.getElementById("logoutBtn").addEventListener("click", async () => {
+    await supabaseClient.auth.signOut();
+    showLogin();
+  });
+
+  async function loadContent() {
+
+    contentList.innerHTML = '<div class="empty">Loading...</div>';
+
+    let query = supabaseClient
+      .from("content")
+      .select("*")
+      .order("created_at", { ascending: false });
+
+    if (currentFilter !== "all") {
+      query = query.eq("type", currentFilter);
+    }
+
+    const { data, error } = await query;
+
+    if (error) {
+      contentList.innerHTML =
+        '<div class="empty">Could not load content.</div>';
+      console.error(error);
+      return;
+    }
+
+    if (!data || data.length === 0) {
+      contentList.innerHTML =
+        '<div class="empty">No content yet. Click "+ Add Content" to begin.</div>';
+      return;
+    }
+
+    contentList.innerHTML = "";
+
+    data.forEach(item => {
+
+      const div = document.createElement("div");
+      div.className = "content-item";
+
+      const status = item.published
+        ? '<span class="badge published">Published</span>'
+        : '<span class="badge draft">Draft</span>';
+
+      div.innerHTML = `
+        ${status}
+        <h3>${escapeHtml(item.title || "Untitled")}</h3>
+        <p>${escapeHtml(item.description || "")}</p>
+        <small>${escapeHtml(item.type || "")}</small>
+
+        <div class="actions">
+          <button class="edit" onclick="editContent('${item.id}')">
+            Edit
+          </button>
+
+          <button class="delete" onclick="deleteContent('${item.id}')">
+            Delete
+          </button>
+        </div>
+      `;
+
+      contentList.appendChild(div);
+    });
+  }
+
+  function escapeHtml(value) {
+    return String(value)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  }
+
+  async function editContent(id) {
+
+    const { data, error } = await supabaseClient
+      .from("content")
+      .select("*")
+      .eq("id", id)
+      .single();
+
+    if (error) {
+      alert("Could not load this content.");
+      return;
+    }
+
+    editingId = id;
+
+    document.getElementById("contentType").value = data.type || "story";
+    document.getElementById("contentTitle").value = data.title || "";
+    document.getElementById("contentDescription").value = data.description || "";
+    document.getElementById("contentBody").value = data.body || "";
+    document.getElementById("mediaUrl").value = data.media_url || "";
+    document.getElementById("thumbnailUrl").value = data.thumbnail_url || "";
+    document.getElementById("published").checked = data.published === true;
+
+    formTitle.textContent = "Edit Content";
+    formCard.classList.remove("hidden");
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  }
+
+  async function deleteContent(id) {
+
+    if (!confirm("Delete this content?")) return;
+
+    const { error } = await supabaseClient
+      .from("content")
+      .delete()
+      .eq("id", id);
+
+    if (error) {
+      alert("Could not delete content.");
+      return;
+    }
+
+    loadContent();
+  }
+
+  contentForm.addEventListener("submit", async (e) => {
+
+    e.preventDefault();
+
+    formMessage.textContent = "Saving...";
+
+    const content = {
+      type: document.getElementById("contentType").value,
+      title: document.getElementById("contentTitle").value,
+      description: document.getElementById("contentDescription").value,
+      body: document.getElementById("contentBody").value,
+      media_url: document.getElementById("mediaUrl").value,
+      thumbnail_url: document.getElementById("thumbnailUrl").value,
+      published: document.getElementById("published").checked
+    };
+
+    let result;
+
+    if (editingId) {
+
+      result = await supabaseClient
+        .from("content")
+        .update(content)
+        .eq("id", editingId);
+
+    } else {
+
+      result = await supabaseClient
+        .from("content")
+        .insert([content]);
+    }
+
+    if (result.error) {
+      formMessage.textContent = result.error.message;
+      return;
+    }
+
+    formMessage.textContent = "Saved successfully!";
+
+    editingId = null;
+
+    contentForm.reset();
+
+    setTimeout(() => {
+      formMessage.textContent = "";
+      formCard.classList.add("hidden");
+      loadContent();
+    }, 800);
+  });
+
+  document.querySelectorAll(".tab").forEach(tab => {
+
+    tab.addEventListener("click", () => {
+
+      document.querySelectorAll(".tab")
+        .forEach(t => t.classList.remove("active"));
+
+      tab.classList.add("active");
+
+      const type = tab.dataset.type;
+
+      if (type === "new") {
+        editingId = null;
+        contentForm.reset();
+        formTitle.textContent = "Add Content";
+        formCard.classList.remove("hidden");
+        return;
+      }
+
+      formCard.classList.add("hidden");
+
+      currentFilter = type;
+
+      loadContent();
+    });
+  });
+
+  supabaseClient.auth.onAuthStateChange((event, session) => {
+
+    if (session) {
+      showDashboard();
+    } else {
+      showLogin();
+    }
+
+  });
+
+  checkSession();
+</script>
+
 </body>
 </html>
