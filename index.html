@@ -17,7 +17,7 @@
     :root {
       --forest: #294538;
       --deep: #1d3027;
-      --sage: #6f8978;
+      --sage: #718879;
       --cream: #f8f3eb;
       --soft: #eee5d8;
       --terracotta: #bd7656;
@@ -65,9 +65,7 @@
       margin: auto;
     }
 
-    /* =========================
-       NAVIGATION
-    ========================= */
+    /* NAVIGATION */
 
     nav {
       position: sticky;
@@ -90,7 +88,6 @@
       font-size: 1.35rem;
       font-weight: bold;
       color: var(--forest);
-      letter-spacing: 0.02em;
     }
 
     .logo span {
@@ -107,16 +104,13 @@
     .nav-links a {
       font-size: 0.92rem;
       color: var(--forest);
-      transition: 0.2s ease;
     }
 
     .nav-links a:hover {
       color: var(--terracotta);
     }
 
-    /* =========================
-       HERO
-    ========================= */
+    /* HERO */
 
     .hero {
       min-height: 88vh;
@@ -156,7 +150,6 @@
       font-size: clamp(3rem, 7vw, 6rem);
       line-height: 0.98;
       margin-bottom: 28px;
-      max-width: 800px;
     }
 
     .hero p {
@@ -189,9 +182,7 @@
       margin-left: 10px;
     }
 
-    /* =========================
-       SECTIONS
-    ========================= */
+    /* SECTIONS */
 
     section {
       padding: 90px 0;
@@ -218,9 +209,7 @@
       color: var(--muted);
     }
 
-    /* =========================
-       INTRO
-    ========================= */
+    /* INTRO */
 
     .intro {
       background: var(--white);
@@ -234,9 +223,7 @@
       color: var(--forest);
     }
 
-    /* =========================
-       BELIEFS
-    ========================= */
+    /* BELIEFS */
 
     .beliefs {
       background: var(--soft);
@@ -271,9 +258,7 @@
       color: var(--muted);
     }
 
-    /* =========================
-       ABOUT
-    ========================= */
+    /* ABOUT */
 
     .about {
       background: var(--cream);
@@ -313,9 +298,7 @@
       color: var(--muted);
     }
 
-    /* =========================
-       BOOK
-    ========================= */
+    /* BOOK */
 
     .book {
       background: var(--deep);
@@ -355,9 +338,7 @@
       margin-bottom: 20px;
     }
 
-    /* =========================
-       CONTENT
-    ========================= */
+    /* CONTENT */
 
     .content-section {
       background: var(--white);
@@ -379,14 +360,9 @@
 
     .content-image {
       height: 230px;
-
-      background:
-        linear-gradient(
-          rgba(29,48,39,0.12),
-          rgba(29,48,39,0.12)
-        ),
-        url("WhatsApp Image 2026-09-24 at 18.28.36.jpeg")
-        center/cover;
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
     }
 
     .content-body {
@@ -432,62 +408,40 @@
       border-radius: 15px;
     }
 
-    /* =========================
-       FULL STORY READER
-    ========================= */
+    /* FULL STORY READER */
 
     .story-reader-overlay {
       position: fixed;
       inset: 0;
       z-index: 5000;
-
       background: rgba(20, 38, 29, 0.82);
-
       backdrop-filter: blur(8px);
-
       overflow-y: auto;
-
       padding: 40px 20px;
     }
 
     .story-reader-box {
       position: relative;
-
       width: min(850px, 100%);
-
       margin: 0 auto;
-
       background: var(--cream);
-
       border-radius: 25px;
-
       padding: 60px;
-
-      box-shadow:
-        0 30px 80px rgba(0,0,0,0.30);
+      box-shadow: 0 30px 80px rgba(0,0,0,0.30);
     }
 
     .story-close {
       position: absolute;
-
       top: 18px;
       right: 22px;
-
       width: 45px;
       height: 45px;
-
       border: none;
-
       border-radius: 50%;
-
       background: var(--soft);
-
       color: var(--forest);
-
       font-size: 2rem;
-
       cursor: pointer;
-
       line-height: 1;
     }
 
@@ -498,50 +452,34 @@
 
     .story-reader-box h1 {
       color: var(--forest);
-
-      font-size:
-        clamp(2.4rem, 5vw, 4rem);
-
+      font-size: clamp(2.4rem, 5vw, 4rem);
       line-height: 1.1;
-
       margin-bottom: 10px;
     }
 
     .story-date {
       color: var(--muted);
-
       font-size: 0.9rem;
-
       margin-bottom: 30px;
     }
 
     .story-reader-image {
       width: 100%;
-
       max-height: 450px;
-
       object-fit: cover;
-
       border-radius: 18px;
-
       margin-bottom: 35px;
     }
 
     .story-full-body {
       color: var(--text);
-
       font-size: 1.15rem;
-
       line-height: 1.9;
-
       white-space: pre-wrap;
-
       word-wrap: break-word;
     }
 
-    /* =========================
-       JOURNEY
-    ========================= */
+    /* JOURNEY */
 
     .journey {
       color: white;
@@ -573,9 +511,7 @@
       font-size: 1.1rem;
     }
 
-    /* =========================
-       CONTACT
-    ========================= */
+    /* CONTACT */
 
     .contact {
       background: var(--soft);
@@ -598,9 +534,7 @@
       margin-bottom: 25px;
     }
 
-    /* =========================
-       FOOTER
-    ========================= */
+    /* FOOTER */
 
     footer {
       background: var(--deep);
@@ -614,9 +548,7 @@
       font-size: 0.9rem;
     }
 
-    /* =========================
-       MOBILE
-    ========================= */
+    /* MOBILE */
 
     @media (max-width: 800px) {
 
@@ -680,12 +612,9 @@
 
 <body>
 
-  <!-- =========================
-       NAVIGATION
-  ========================= -->
+  <!-- NAVIGATION -->
 
   <nav>
-
     <div class="container nav-inner">
 
       <a href="#home" class="logo">
@@ -693,37 +622,18 @@
       </a>
 
       <div class="nav-links">
-
-        <a href="#about">
-          About
-        </a>
-
-        <a href="#book">
-          Book
-        </a>
-
-        <a href="#stories">
-          Stories
-        </a>
-
-        <a href="#media">
-          Media
-        </a>
-
-        <a href="#contact">
-          Contact
-        </a>
-
+        <a href="#about">About</a>
+        <a href="#book">Book</a>
+        <a href="#stories">Stories</a>
+        <a href="#media">Media</a>
+        <a href="#contact">Contact</a>
       </div>
 
     </div>
-
   </nav>
 
 
-  <!-- =========================
-       HERO
-  ========================= -->
+  <!-- HERO -->
 
   <header class="hero" id="home">
 
@@ -759,9 +669,7 @@
   </header>
 
 
-  <!-- =========================
-       INTRO
-  ========================= -->
+  <!-- INTRO -->
 
   <section class="intro">
 
@@ -778,9 +686,7 @@
   </section>
 
 
-  <!-- =========================
-       BELIEFS
-  ========================= -->
+  <!-- BELIEFS -->
 
   <section class="beliefs">
 
@@ -804,14 +710,11 @@
 
       </div>
 
-
       <div class="belief-grid">
 
         <div class="belief-card">
 
-          <div class="belief-number">
-            01
-          </div>
+          <div class="belief-number">01</div>
 
           <h3>
             Your story matters
@@ -827,9 +730,7 @@
 
         <div class="belief-card">
 
-          <div class="belief-number">
-            02
-          </div>
+          <div class="belief-number">02</div>
 
           <h3>
             Growth takes time
@@ -844,9 +745,7 @@
 
         <div class="belief-card">
 
-          <div class="belief-number">
-            03
-          </div>
+          <div class="belief-number">03</div>
 
           <h3>
             We don't grow alone
@@ -866,16 +765,13 @@
   </section>
 
 
-  <!-- =========================
-       ABOUT
-  ========================= -->
+  <!-- ABOUT -->
 
   <section class="about" id="about">
 
     <div class="container about-grid">
 
       <div class="about-image"></div>
-
 
       <div class="about-copy">
 
@@ -910,16 +806,13 @@
   </section>
 
 
-  <!-- =========================
-       BOOK
-  ========================= -->
+  <!-- BOOK -->
 
   <section class="book" id="book">
 
     <div class="container book-grid">
 
       <div class="book-cover"></div>
-
 
       <div class="book-copy">
 
@@ -951,9 +844,7 @@
   </section>
 
 
-  <!-- =========================
-       STORIES
-  ========================= -->
+  <!-- STORIES -->
 
   <section class="content-section" id="stories">
 
@@ -976,16 +867,13 @@
 
       </div>
 
-
       <div
         class="content-grid"
         id="stories-container"
       >
-
         <div class="empty-message">
           Loading Janet's stories...
         </div>
-
       </div>
 
     </div>
@@ -993,15 +881,11 @@
   </section>
 
 
-  <!-- =========================
-       MEDIA
-  ========================= -->
+  <!-- MEDIA -->
 
   <section class="content-section" id="media">
 
     <div class="container">
-
-      <!-- VIDEOS -->
 
       <div class="section-heading">
 
@@ -1019,16 +903,13 @@
 
       </div>
 
-
       <div
         class="content-grid"
         id="videos-container"
       >
-
         <div class="empty-message">
           Loading Janet's videos...
         </div>
-
       </div>
 
 
@@ -1036,8 +917,6 @@
       <br>
       <br>
 
-
-      <!-- PODCASTS -->
 
       <div class="section-heading">
 
@@ -1055,16 +934,13 @@
 
       </div>
 
-
       <div
         class="content-grid"
         id="podcasts-container"
       >
-
         <div class="empty-message">
           Loading Janet's podcasts...
         </div>
-
       </div>
 
     </div>
@@ -1072,9 +948,7 @@
   </section>
 
 
-  <!-- =========================
-       JOURNEY
-  ========================= -->
+  <!-- JOURNEY -->
 
   <section class="journey">
 
@@ -1102,9 +976,7 @@
   </section>
 
 
-  <!-- =========================
-       CONTACT
-  ========================= -->
+  <!-- CONTACT -->
 
   <section class="contact" id="contact">
 
@@ -1132,9 +1004,7 @@
   </section>
 
 
-  <!-- =========================
-       FOOTER
-  ========================= -->
+  <!-- FOOTER -->
 
   <footer>
 
@@ -1149,9 +1019,7 @@
   </footer>
 
 
-  <!-- =========================
-       SUPABASE + CONTENT
-  ========================= -->
+  <!-- SUPABASE -->
 
   <script>
 
@@ -1160,14 +1028,13 @@
 
 
     /*
-      PUBLIC ANON KEY
-
-      This is the browser-safe anon key.
-      RLS is enabled in Supabase.
+      IMPORTANT:
+      This is the exact working ANON PUBLIC key.
+      Do NOT replace it with the secret/service_role key.
     */
 
     const SUPABASE_KEY =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJqdG12Z2dmemJqaW1laG1lYXJ5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTAzOTc0MDcsImV4cCI6MjEwNTk3MzQwN30.xp46UFiJFXqNITnMWocwo8rt8e-hEadb8Kq3LZweBVQ";
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpsbXZnZ2ZiamltZWhtZWFyeSIsInJvbGUiOiJhbm9uIiwiaWF0IjoxNzkwMzk3NDA3LCJleHAiOjIxMDU5NzM0MDd9.xp46UFiJFXqNITnMWocwo8rt8e-hEadb8Kq3LZweBVQ";
 
 
     const supabaseClient =
@@ -1178,24 +1045,19 @@
 
 
     /*
-      This array stores the content
-      loaded from Supabase.
-
-      The story reader uses this same data,
-      so we do not need another database request
-      when someone clicks "Read Full Story".
+      ALL CONTENT LOADED FROM SUPABASE
     */
 
     window.janetStories = [];
 
 
     /*
-      ESCAPE HTML
+      SAFELY DISPLAY TEXT
     */
 
     function escapeHTML(value) {
 
-      if (!value) {
+      if (value === null || value === undefined) {
         return "";
       }
 
@@ -1219,19 +1081,16 @@
           item.title || "Untitled"
         );
 
-
       const description =
         escapeHTML(
           item.description ||
           "Read more from Janet."
         );
 
-
       const type =
         escapeHTML(
           item.type || ""
         );
-
 
       const image =
         item.thumbnail_url ||
@@ -1242,19 +1101,19 @@
 
 
       /*
-        STORY BUTTON
+        STORIES GET A FULL STORY BUTTON
       */
 
       if (
         String(item.type || "")
-          .toLowerCase()
-          .trim() === "story"
+          .trim()
+          .toLowerCase() === "story"
       ) {
 
         actionButton = `
           <button
             class="read-more"
-            onclick="openStory('${escapeHTML(item.id)}')"
+            onclick="openStory('${item.id}')"
             style="
               background: none;
               border: none;
@@ -1272,7 +1131,7 @@
 
 
       /*
-        VIDEO / PODCAST BUTTON
+        VIDEOS / PODCASTS
       */
 
       else if (item.media_url) {
@@ -1306,23 +1165,19 @@
             "
           ></div>
 
-
           <div class="content-body">
 
             <div class="content-type">
               ${type}
             </div>
 
-
             <h3>
               ${title}
             </h3>
 
-
             <p>
               ${description}
             </p>
-
 
             ${actionButton}
 
@@ -1335,6 +1190,10 @@
 
     /*
       OPEN FULL STORY
+
+      IMPORTANT:
+      We use the story already loaded from Supabase.
+      We do NOT make another database request.
     */
 
     function openStory(id) {
@@ -1362,6 +1221,38 @@
 
       reader.id =
         "story-reader";
+
+
+      const publishedDate =
+        story.created_at
+          ? new Date(
+              story.created_at
+            ).toLocaleDateString(
+              "en-KE",
+              {
+                year: "numeric",
+                month: "long",
+                day: "numeric"
+              }
+            )
+          : "";
+
+
+      const storyImage =
+        story.thumbnail_url
+          ? `
+            <img
+              src="${escapeHTML(
+                story.thumbnail_url
+              )}"
+              class="story-reader-image"
+              alt="${escapeHTML(
+                story.title ||
+                "Story image"
+              )}"
+            >
+          `
+          : "";
 
 
       reader.innerHTML = `
@@ -1394,58 +1285,23 @@
 
 
             <p class="story-date">
-
-              Published
-
-              ${
-                story.created_at
-                  ? new Date(
-                      story.created_at
-                    ).toLocaleDateString(
-                      "en-KE",
-                      {
-                        year: "numeric",
-                        month: "long",
-                        day: "numeric"
-                      }
-                    )
-                  : ""
-              }
-
+              Published ${publishedDate}
             </p>
 
 
-            ${
-              story.thumbnail_url
-                ? `
-                  <img
-                    src="${escapeHTML(
-                      story.thumbnail_url
-                    )}"
-                    class="story-reader-image"
-                    alt="${escapeHTML(
-                      story.title ||
-                      "Story image"
-                    )}"
-                  >
-                `
-                : ""
-            }
+            ${storyImage}
 
 
             <div class="story-full-body">
-
               ${escapeHTML(
                 story.body ||
                 "Janet has not added the full story yet."
               )}
-
             </div>
 
           </div>
 
         </div>
-
       `;
 
 
@@ -1460,7 +1316,7 @@
 
 
     /*
-      CLOSE FULL STORY
+      CLOSE STORY
     */
 
     function closeStory() {
@@ -1472,9 +1328,7 @@
 
 
       if (reader) {
-
         reader.remove();
-
       }
 
 
@@ -1484,7 +1338,7 @@
 
 
     /*
-      LOAD CONTENT FROM SUPABASE
+      LOAD PUBLISHED CONTENT
     */
 
     async function loadContent() {
@@ -1494,12 +1348,10 @@
           "stories-container"
         );
 
-
       const videosContainer =
         document.getElementById(
           "videos-container"
         );
-
 
       const podcastsContainer =
         document.getElementById(
@@ -1527,7 +1379,7 @@
         if (error) {
 
           console.error(
-            "Supabase error:",
+            "SUPABASE ERROR:",
             error
           );
 
@@ -1558,26 +1410,25 @@
 
 
         /*
-          ALL PUBLISHED CONTENT
+          SAVE EVERYTHING IN MEMORY
         */
 
         const items =
           data || [];
 
 
-        /*
-          SAVE CONTENT GLOBALLY
-
-          This is what allows the full story
-          reader to access the complete Body.
-        */
-
         window.janetStories =
           items;
 
 
+        console.log(
+          "Janet content loaded:",
+          items
+        );
+
+
         /*
-          STORIES
+          FILTER STORIES
         */
 
         const stories =
@@ -1586,13 +1437,13 @@
               String(
                 item.type || ""
               )
-              .toLowerCase()
-              .trim() === "story"
+              .trim()
+              .toLowerCase() === "story"
           );
 
 
         /*
-          VIDEOS
+          FILTER VIDEOS
         */
 
         const videos =
@@ -1601,13 +1452,13 @@
               String(
                 item.type || ""
               )
-              .toLowerCase()
-              .trim() === "video"
+              .trim()
+              .toLowerCase() === "video"
           );
 
 
         /*
-          PODCASTS
+          FILTER PODCASTS
         */
 
         const podcasts =
@@ -1616,18 +1467,16 @@
               String(
                 item.type || ""
               )
-              .toLowerCase()
-              .trim() === "podcast"
+              .trim()
+              .toLowerCase() === "podcast"
           );
 
 
         /*
-          SHOW STORIES
+          DISPLAY STORIES
         */
 
-        if (
-          stories.length > 0
-        ) {
+        if (stories.length > 0) {
 
           storiesContainer.innerHTML =
             stories
@@ -1648,12 +1497,10 @@
 
 
         /*
-          SHOW VIDEOS
+          DISPLAY VIDEOS
         */
 
-        if (
-          videos.length > 0
-        ) {
+        if (videos.length > 0) {
 
           videosContainer.innerHTML =
             videos
@@ -1674,12 +1521,10 @@
 
 
         /*
-          SHOW PODCASTS
+          DISPLAY PODCASTS
         */
 
-        if (
-          podcasts.length > 0
-        ) {
+        if (podcasts.length > 0) {
 
           podcastsContainer.innerHTML =
             podcasts
@@ -1700,12 +1545,11 @@
 
       }
 
-
-      catch (err) {
+      catch (error) {
 
         console.error(
-          "Content loading error:",
-          err
+          "CONTENT ERROR:",
+          error
         );
 
 
@@ -1735,7 +1579,7 @@
 
 
     /*
-      START WEBSITE
+      START
     */
 
     loadContent();
