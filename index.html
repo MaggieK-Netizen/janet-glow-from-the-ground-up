@@ -56,12 +56,17 @@
       display: block;
     }
 
+    button {
+      font-family: inherit;
+    }
+
     .container {
       width: min(1120px, 92%);
       margin: auto;
     }
 
     /* NAVIGATION */
+
     nav {
       position: sticky;
       top: 0;
@@ -108,6 +113,7 @@
     }
 
     /* HERO */
+
     .hero {
       min-height: 88vh;
       display: flex;
@@ -180,6 +186,7 @@
     }
 
     /* SECTIONS */
+
     section {
       padding: 90px 0;
     }
@@ -206,6 +213,7 @@
     }
 
     /* INTRO */
+
     .intro {
       background: var(--white);
       text-align: center;
@@ -219,6 +227,7 @@
     }
 
     /* BELIEFS */
+
     .beliefs {
       background: var(--soft);
     }
@@ -253,6 +262,7 @@
     }
 
     /* ABOUT */
+
     .about {
       background: var(--cream);
     }
@@ -290,6 +300,7 @@
     }
 
     /* BOOK */
+
     .book {
       background: var(--deep);
       color: white;
@@ -327,6 +338,7 @@
     }
 
     /* CONTENT */
+
     .content-section {
       background: var(--white);
     }
@@ -385,6 +397,10 @@
       font-weight: bold;
     }
 
+    .read-more:hover {
+      opacity: 0.75;
+    }
+
     .empty-message {
       grid-column: 1 / -1;
       text-align: center;
@@ -394,7 +410,74 @@
       border-radius: 15px;
     }
 
+    /* STORY READER */
+
+    .story-reader-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 5000;
+      background: rgba(20, 38, 29, 0.78);
+      backdrop-filter: blur(8px);
+      overflow-y: auto;
+      padding: 40px 20px;
+    }
+
+    .story-reader-box {
+      position: relative;
+      width: min(850px, 100%);
+      margin: 0 auto;
+      background: var(--cream);
+      border-radius: 25px;
+      padding: 55px;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.25);
+    }
+
+    .story-close {
+      position: absolute;
+      top: 18px;
+      right: 22px;
+      border: none;
+      background: none;
+      font-size: 2.2rem;
+      color: var(--forest);
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    .story-close:hover {
+      color: var(--terracotta);
+    }
+
+    .story-reader-box h1 {
+      color: var(--forest);
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      line-height: 1.1;
+      margin-bottom: 10px;
+    }
+
+    .story-date {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-bottom: 30px;
+    }
+
+    .story-reader-image {
+      width: 100%;
+      max-height: 450px;
+      object-fit: cover;
+      border-radius: 18px;
+      margin-bottom: 35px;
+    }
+
+    .story-full-body {
+      color: var(--text);
+      font-size: 1.15rem;
+      line-height: 1.9;
+      white-space: pre-wrap;
+    }
+
     /* JOURNEY */
+
     .journey {
       color: white;
       text-align: center;
@@ -426,6 +509,7 @@
     }
 
     /* CONTACT */
+
     .contact {
       background: var(--soft);
       text-align: center;
@@ -448,6 +532,7 @@
     }
 
     /* FOOTER */
+
     footer {
       background: var(--deep);
       color: white;
@@ -461,6 +546,7 @@
     }
 
     /* MOBILE */
+
     @media (max-width: 800px) {
 
       .nav-inner {
@@ -500,6 +586,24 @@
       .book-cover {
         min-height: 430px;
       }
+
+      .story-reader-overlay {
+        padding: 15px;
+      }
+
+      .story-reader-box {
+        padding: 40px 25px;
+        border-radius: 18px;
+      }
+
+      .story-reader-box h1 {
+        font-size: 2.3rem;
+      }
+
+      .story-full-body {
+        font-size: 1.05rem;
+      }
+
     }
   </style>
 </head>
@@ -507,6 +611,7 @@
 <body>
 
   <!-- NAVIGATION -->
+
   <nav>
     <div class="container nav-inner">
 
@@ -527,6 +632,7 @@
 
 
   <!-- HERO -->
+
   <header class="hero" id="home">
 
     <div class="container">
@@ -562,6 +668,7 @@
 
 
   <!-- INTRO -->
+
   <section class="intro">
 
     <div class="container">
@@ -578,6 +685,7 @@
 
 
   <!-- BELIEFS -->
+
   <section class="beliefs">
 
     <div class="container">
@@ -663,6 +771,7 @@
 
 
   <!-- ABOUT -->
+
   <section class="about" id="about">
 
     <div class="container about-grid">
@@ -704,6 +813,7 @@
 
 
   <!-- BOOK -->
+
   <section class="book" id="book">
 
     <div class="container book-grid">
@@ -742,6 +852,7 @@
 
 
   <!-- STORIES -->
+
   <section class="content-section" id="stories">
 
     <div class="container">
@@ -781,6 +892,7 @@
 
 
   <!-- MEDIA -->
+
   <section class="content-section" id="media">
 
     <div class="container">
@@ -855,6 +967,7 @@
 
 
   <!-- JOURNEY -->
+
   <section class="journey">
 
     <div class="container journey-inner">
@@ -882,6 +995,7 @@
 
 
   <!-- CONTACT -->
+
   <section class="contact" id="contact">
 
     <div class="container contact-box">
@@ -909,6 +1023,7 @@
 
 
   <!-- FOOTER -->
+
   <footer>
 
     <div class="container">
@@ -923,18 +1038,20 @@
 
 
   <!-- SUPABASE CONNECTION -->
+
   <script>
 
     const SUPABASE_URL =
       "https://jlmvggfzbjimeihmeary.supabase.co";
 
+
     /*
-      This is the PUBLIC anon key.
-      It is safe for use in the browser because
-      Row Level Security is enabled on the database.
+      PUBLIC ANON KEY
+      RLS is enabled on the Supabase database.
     */
+
     const SUPABASE_KEY =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpsbXZnZ2Z6YmppbWVpaG1lYXJ5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTAzOTc0MDcsImV4cCI6MjEwNTk3MzQwN30.xp46UFiJFXqNITnMWocwo8rt8e-hEadb8Kq3LZweBVQ";
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpsbXZnZ2ZiamltZWhtZWFyeSIsInJvbGUiOiJhbm9uIiwiaWF0IjoxNzkwMzk3NDA3LCJleHAiOjIxMDU5NzM0MDd9.xp46UFiJFXqNITnMWocwo8rt8e-hEadb8Kq3LZweBVQ";
 
 
     const supabaseClient =
@@ -943,6 +1060,11 @@
         SUPABASE_KEY
       );
 
+
+    /*
+      SECURITY
+      Escape text before displaying it.
+    */
 
     function escapeHTML(value) {
 
@@ -959,6 +1081,10 @@
     }
 
 
+    /*
+      CREATE CONTENT CARD
+    */
+
     function createContentCard(item) {
 
       const title =
@@ -970,7 +1096,6 @@
       const description =
         escapeHTML(
           item.description ||
-          item.body ||
           "Read more from Janet."
         );
 
@@ -986,12 +1111,46 @@
         "WhatsApp Image 2026-09-24 at 18.28.36.jpeg";
 
 
-      let mediaButton = "";
+      let actionButton = "";
 
 
-      if (item.media_url) {
+      /*
+        STORIES
+      */
 
-        mediaButton = `
+      if (
+        String(item.type || "")
+          .toLowerCase()
+          .trim() === "story"
+      ) {
+
+        actionButton = `
+          <button
+            class="read-more"
+            onclick="openStory('${escapeHTML(item.id)}')"
+            style="
+              background:none;
+              border:none;
+              padding:0;
+              font-family:inherit;
+              font-size:1rem;
+              cursor:pointer;
+            "
+          >
+            Read Full Story →
+          </button>
+        `;
+
+      }
+
+
+      /*
+        VIDEOS AND PODCASTS
+      */
+
+      else if (item.media_url) {
+
+        actionButton = `
           <a
             class="read-more"
             href="${escapeHTML(item.media_url)}"
@@ -1001,6 +1160,7 @@
             View / Listen →
           </a>
         `;
+
       }
 
 
@@ -1033,7 +1193,7 @@
               ${description}
             </p>
 
-            ${mediaButton}
+            ${actionButton}
 
           </div>
 
@@ -1041,6 +1201,164 @@
       `;
     }
 
+
+    /*
+      OPEN FULL STORY
+    */
+
+    async function openStory(id) {
+
+      const {
+        data,
+        error
+      } = await supabaseClient
+        .from("content")
+        .select("*")
+        .eq("id", id)
+        .eq("published", true)
+        .single();
+
+
+      if (error || !data) {
+
+        console.error(
+          "Story loading error:",
+          error
+        );
+
+        alert(
+          "Sorry, this story could not be opened."
+        );
+
+        return;
+      }
+
+
+      const reader =
+        document.createElement("div");
+
+
+      reader.id =
+        "story-reader";
+
+
+      reader.innerHTML = `
+
+        <div class="story-reader-overlay">
+
+          <div class="story-reader-box">
+
+            <button
+              onclick="closeStory()"
+              class="story-close"
+              aria-label="Close story"
+            >
+              ×
+            </button>
+
+
+            <div class="eyebrow">
+              ${escapeHTML(data.type || "Story")}
+            </div>
+
+
+            <h1>
+              ${escapeHTML(
+                data.title || "Untitled"
+              )}
+            </h1>
+
+
+            <p class="story-date">
+              Published
+              ${
+                data.created_at
+                  ? new Date(
+                      data.created_at
+                    ).toLocaleDateString(
+                      "en-KE",
+                      {
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric"
+                      }
+                    )
+                  : ""
+              }
+            </p>
+
+
+            ${
+              data.thumbnail_url
+                ? `
+                  <img
+                    src="${escapeHTML(
+                      data.thumbnail_url
+                    )}"
+                    class="story-reader-image"
+                    alt="${escapeHTML(
+                      data.title ||
+                      "Story image"
+                    )}"
+                  >
+                `
+                : ""
+            }
+
+
+            <div class="story-full-body">
+
+              ${escapeHTML(
+                data.body ||
+                "This story has no additional content yet."
+              )}
+
+            </div>
+
+          </div>
+
+        </div>
+
+      `;
+
+
+      document.body.appendChild(
+        reader
+      );
+
+
+      document.body.style.overflow =
+        "hidden";
+    }
+
+
+    /*
+      CLOSE FULL STORY
+    */
+
+    function closeStory() {
+
+      const reader =
+        document.getElementById(
+          "story-reader"
+        );
+
+
+      if (reader) {
+
+        reader.remove();
+
+      }
+
+
+      document.body.style.overflow =
+        "";
+    }
+
+
+    /*
+      LOAD PUBLISHED CONTENT
+    */
 
     async function loadContent() {
 
@@ -1116,6 +1434,10 @@
           data || [];
 
 
+        /*
+          STORIES
+        */
+
         const stories =
           items.filter(
             item =>
@@ -1126,6 +1448,10 @@
               .trim() === "story"
           );
 
+
+        /*
+          VIDEOS
+        */
 
         const videos =
           items.filter(
@@ -1138,6 +1464,10 @@
           );
 
 
+        /*
+          PODCASTS
+        */
+
         const podcasts =
           items.filter(
             item =>
@@ -1149,11 +1479,19 @@
           );
 
 
-        if (stories.length > 0) {
+        /*
+          DISPLAY STORIES
+        */
+
+        if (
+          stories.length > 0
+        ) {
 
           storiesContainer.innerHTML =
             stories
-              .map(createContentCard)
+              .map(
+                createContentCard
+              )
               .join("");
 
         } else {
@@ -1167,11 +1505,19 @@
         }
 
 
-        if (videos.length > 0) {
+        /*
+          DISPLAY VIDEOS
+        */
+
+        if (
+          videos.length > 0
+        ) {
 
           videosContainer.innerHTML =
             videos
-              .map(createContentCard)
+              .map(
+                createContentCard
+              )
               .join("");
 
         } else {
@@ -1185,11 +1531,19 @@
         }
 
 
-        if (podcasts.length > 0) {
+        /*
+          DISPLAY PODCASTS
+        */
+
+        if (
+          podcasts.length > 0
+        ) {
 
           podcastsContainer.innerHTML =
             podcasts
-              .map(createContentCard)
+              .map(
+                createContentCard
+              )
               .join("");
 
         } else {
@@ -1202,7 +1556,10 @@
 
         }
 
-      } catch (err) {
+      }
+
+
+      catch (err) {
 
         console.error(
           "Content loading error:",
@@ -1234,6 +1591,10 @@
 
     }
 
+
+    /*
+      START
+    */
 
     loadContent();
 
