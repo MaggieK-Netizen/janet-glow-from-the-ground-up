@@ -1,17 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Glow From The Ground Up | Janet</title>
 
   <meta
     name="description"
     content="Glow From The Ground Up — stories, reflections, podcasts and conversations by Janet."
-  />
+  >
 
-  <!-- Supabase -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
   <style>
@@ -254,7 +253,10 @@
     .about-image {
       min-height: 500px;
       background:
-        linear-gradient(rgba(29,48,39,0.12), rgba(29,48,39,0.12)),
+        linear-gradient(
+          rgba(29,48,39,0.12),
+          rgba(29,48,39,0.12)
+        ),
         url("WhatsApp Image 2026-09-24 at 18.28.36.jpeg")
         center/cover;
     }
@@ -280,9 +282,13 @@
     .book-cover {
       min-height: 500px;
       background:
-        linear-gradient(rgba(20,38,29,0.15), rgba(20,38,29,0.15)),
+        linear-gradient(
+          rgba(20,38,29,0.15),
+          rgba(20,38,29,0.15)
+        ),
         url("WhatsApp Image 2026-09-24 at 18.28.36.jpeg")
         center/cover;
+
       box-shadow: 0 20px 50px rgba(0,0,0,0.3);
     }
 
@@ -322,7 +328,10 @@
     .content-image {
       height: 210px;
       background:
-        linear-gradient(rgba(41,69,56,0.18), rgba(41,69,56,0.18)),
+        linear-gradient(
+          rgba(41,69,56,0.18),
+          rgba(41,69,56,0.18)
+        ),
         url("WhatsApp Image 2026-09-24 at 18.28.36.jpeg")
         center/cover;
     }
@@ -393,6 +402,7 @@
         ),
         url("WhatsApp Image 2026-09-24 at 18.28.36.jpeg")
         center/cover;
+
       color: white;
       text-align: center;
     }
@@ -514,8 +524,8 @@
       </h1>
 
       <p>
-        A space for stories, healing, courage, growth and the beautiful
-        journey of becoming who you were created to be.
+        A space for stories, healing, courage, growth and the
+        beautiful journey of becoming who you were created to be.
       </p>
 
       <a href="#stories" class="button">
@@ -573,6 +583,7 @@
 
         <div class="belief">
           <h3>Your beginning matters.</h3>
+
           <p>
             Every experience shapes us, but no experience has to
             become the final definition of who we are.
@@ -581,6 +592,7 @@
 
         <div class="belief">
           <h3>Your voice matters.</h3>
+
           <p>
             There is power in sharing honest stories and creating
             room for others to feel seen and heard.
@@ -589,6 +601,7 @@
 
         <div class="belief">
           <h3>Your growth matters.</h3>
+
           <p>
             Becoming takes time. Every small step forward is still
             movement.
@@ -817,7 +830,10 @@
         book conversations and other enquiries, get in touch with Janet.
       </p>
 
-      <a href="mailto:hello@glowfromthegroundup.com" class="button">
+      <a
+        href="mailto:hello@glowfromthegroundup.com"
+        class="button"
+      >
         Contact Janet
       </a>
 
@@ -836,7 +852,7 @@
   </footer>
 
 
-  <!-- SUPABASE / DYNAMIC CONTENT -->
+  <!-- SUPABASE -->
   <script>
 
     const SUPABASE_URL =
@@ -852,7 +868,6 @@
       );
 
 
-    /* Prevent unsafe HTML from dashboard content */
     function escapeHTML(value) {
 
       if (!value) return "";
@@ -863,10 +878,10 @@
         .replace(/>/g, "&gt;")
         .replace(/"/g, "&quot;")
         .replace(/'/g, "&#039;");
+
     }
 
 
-    /* Create a content card */
     function createContentCard(item) {
 
       const title =
@@ -947,7 +962,6 @@
     }
 
 
-    /* Load published content */
     async function loadContent() {
 
       const {
@@ -1086,7 +1100,6 @@
     }
 
 
-    /* Start loading content */
     loadContent();
 
   </script>
