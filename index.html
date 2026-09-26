@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -6,10 +7,15 @@
 
   <title>Glow From The Ground Up | Janet</title>
 
-  <meta
-    name="description"
-    content="Glow From The Ground Up — a space for faith, purpose, growth, stories and becoming. Created by Janet."
-  >
+<meta
+name="description"
+content="Glow From The Ground Up — a space for faith, purpose, growth, stories and becoming. Created by Janet."
+
+>
+
+  <!-- SUPABASE -->
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
   <style>
     :root {
@@ -53,8 +59,6 @@
     a {
       color: inherit;
     }
-
-    /* NAVIGATION */
 
     nav {
       position: sticky;
@@ -101,8 +105,6 @@
       padding: 10px 17px;
       border-radius: 30px;
     }
-
-    /* HERO */
 
     .hero {
       min-height: 88vh;
@@ -187,8 +189,6 @@
       color: var(--forest);
     }
 
-    /* GENERAL */
-
     section {
       padding: 95px 8%;
     }
@@ -225,8 +225,6 @@
       font-size: 18px;
     }
 
-    /* INTRO */
-
     .intro {
       background: #fffaf4;
       text-align: center;
@@ -247,8 +245,6 @@
       color: var(--muted);
       font-size: 20px;
     }
-
-    /* BELIEFS */
 
     .beliefs {
       background: var(--cream);
@@ -288,8 +284,6 @@
     .card p {
       color: var(--muted);
     }
-
-    /* ABOUT */
 
     .about {
       background: #e9dfd1;
@@ -332,8 +326,6 @@
       color: var(--terracotta);
       margin-top: 25px;
     }
-
-    /* BOOK */
 
     .book {
       background: var(--forest);
@@ -400,42 +392,72 @@
       color: #f1e5d2;
     }
 
-    /* STORIES */
+    /* DYNAMIC CONTENT */
 
     .stories {
       background: #fffaf4;
     }
 
-    .story-card {
+    .content-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .dynamic-card {
       background: white;
       border-radius: 20px;
       overflow: hidden;
       box-shadow: var(--shadow);
+      transition: 0.3s ease;
     }
 
-    .story-top {
-      height: 170px;
+    .dynamic-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .dynamic-image {
+      height: 190px;
       background:
-        linear-gradient(rgba(41,69,56,.55), rgba(41,69,56,.55)),
+        linear-gradient(rgba(41,69,56,.48), rgba(41,69,56,.48)),
         url("https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=1000&q=85")
         center/cover;
-      display: flex;
-      align-items: flex-end;
-      padding: 25px;
-      color: white;
     }
 
-    .story-top h3 {
-      font-size: 27px;
+    .dynamic-image.has-image {
+      background-size: cover;
+      background-position: center;
     }
 
-    .story-body {
+    .dynamic-content {
       padding: 27px;
     }
 
-    .story-body p {
+    .content-type {
+      display: inline-block;
+      color: var(--terracotta);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 11px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .dynamic-content h3 {
+      color: var(--forest);
+      font-size: 27px;
+      margin-bottom: 12px;
+    }
+
+    .dynamic-content p {
       color: var(--muted);
       margin-bottom: 18px;
+    }
+
+    .dynamic-body {
+      white-space: pre-line;
+      color: var(--muted);
+      margin-bottom: 20px;
     }
 
     .read-more {
@@ -444,7 +466,15 @@
       font-weight: bold;
     }
 
-    /* MEDIA */
+    .empty-message {
+      grid-column: 1 / -1;
+      text-align: center;
+      background: white;
+      padding: 45px;
+      border-radius: 20px;
+      color: var(--muted);
+      box-shadow: var(--shadow);
+    }
 
     .media {
       background: var(--soft);
@@ -487,8 +517,6 @@
       font-weight: bold;
     }
 
-    /* JOURNEY */
-
     .journey {
       text-align: center;
       background:
@@ -511,8 +539,6 @@
       color: rgba(255,255,255,.82);
       font-size: 19px;
     }
-
-    /* CONTACT */
 
     .contact {
       background: var(--cream);
@@ -540,8 +566,6 @@
       margin-bottom: 25px;
     }
 
-    /* FOOTER */
-
     footer {
       background: var(--deep);
       color: white;
@@ -564,8 +588,6 @@
       border-top: 1px solid rgba(255,255,255,.12);
       font-size: 13px;
     }
-
-    /* MOBILE */
 
     @media (max-width: 850px) {
 
@@ -610,6 +632,7 @@
       }
 
       .cards,
+      .content-grid,
       .about-grid,
       .book-grid {
         grid-template-columns: 1fr;
@@ -656,6 +679,7 @@
       }
     }
   </style>
+
 </head>
 
 <body>
@@ -665,498 +689,398 @@
   <nav>
     <a href="#home" class="brand">Glow From The Ground Up</a>
 
-    <div class="nav-links">
-      <a href="#about">About</a>
-      <a href="#book">The Book</a>
-      <a href="#stories">Stories</a>
-      <a href="#media">Media</a>
-      <a href="#contact" class="nav-button">Connect</a>
-    </div>
-  </nav>
+```
+<div class="nav-links">
+  <a href="#about">About</a>
+  <a href="#book">The Book</a>
+  <a href="#stories">Stories</a>
+  <a href="#media">Media</a>
+  <a href="#contact" class="nav-button">Connect</a>
+</div>
+```
 
+  </nav>
 
   <!-- HERO -->
 
   <header class="hero" id="home">
     <div class="hero-content">
 
-      <div class="eyebrow">
-        Glow From The Ground Up
-      </div>
+```
+  <div class="eyebrow">
+    Glow From The Ground Up
+  </div>
 
-      <h1>
-        You can rise beyond your beginning.
-      </h1>
+  <h1>
+    You can rise beyond your beginning.
+  </h1>
 
-      <p class="hero-description">
-        A space created by Janet for conversations about faith,
-        purpose, personal growth, resilience and the journey of becoming.
-      </p>
+  <p class="hero-description">
+    A space created by Janet for conversations about faith,
+    purpose, personal growth, resilience and the journey of becoming.
+  </p>
 
-      <div class="buttons">
-        <a href="#book" class="button primary">
-          Discover The Book
-        </a>
+  <div class="buttons">
+    <a href="#book" class="button primary">
+      Discover The Book
+    </a>
 
-        <a href="#stories" class="button outline">
-          Explore Stories
-        </a>
-      </div>
+    <a href="#stories" class="button outline">
+      Explore Stories
+    </a>
+  </div>
 
-    </div>
+</div>
+```
+
   </header>
-
 
   <!-- INTRO -->
 
   <section class="intro">
 
-    <div class="small-label">
-      The Journey
-    </div>
+```
+<div class="small-label">
+  The Journey
+</div>
 
-    <h2>
-      Your beginning is part of your story.
-      It does not have to become your identity.
-    </h2>
+<h2>
+  Your beginning is part of your story.
+  It does not have to become your identity.
+</h2>
 
-    <p>
-      Glow From The Ground Up is a place to pause, reflect,
-      learn, grow and remember that where you started is not
-      necessarily where you are going.
-    </p>
+<p>
+  Glow From The Ground Up is a place to pause, reflect,
+  learn, grow and remember that where you started is not
+  necessarily where you are going.
+</p>
+```
 
   </section>
-
 
   <!-- BELIEFS -->
 
   <section class="beliefs">
 
-    <div class="section-heading">
-      <div class="small-label">What We Believe</div>
+```
+<div class="section-heading">
+  <div class="small-label">What We Believe</div>
 
-      <h2>
-        Growth starts from within.
-      </h2>
+  <h2>
+    Growth starts from within.
+  </h2>
 
-      <p>
-        Every journey looks different. But faith, purpose and
-        intentional growth can help us move forward.
-      </p>
-    </div>
+  <p>
+    Every journey looks different. But faith, purpose and
+    intentional growth can help us move forward.
+  </p>
+</div>
 
-    <div class="cards">
+<div class="cards">
 
-      <div class="card">
-        <div class="card-number">01</div>
+  <div class="card">
+    <div class="card-number">01</div>
 
-        <h3>Faith</h3>
+    <h3>Faith</h3>
 
-        <p>
-          Building a deeper relationship with God and discovering
-          strength, hope and direction through faith.
-        </p>
-      </div>
+    <p>
+      Building a deeper relationship with God and discovering
+      strength, hope and direction through faith.
+    </p>
+  </div>
 
-      <div class="card">
-        <div class="card-number">02</div>
+  <div class="card">
+    <div class="card-number">02</div>
 
-        <h3>Purpose</h3>
+    <h3>Purpose</h3>
 
-        <p>
-          Exploring who you are, what matters to you and the
-          contribution you were created to make.
-        </p>
-      </div>
+    <p>
+      Exploring who you are, what matters to you and the
+      contribution you were created to make.
+    </p>
+  </div>
 
-      <div class="card">
-        <div class="card-number">03</div>
+  <div class="card">
+    <div class="card-number">03</div>
 
-        <h3>Growth</h3>
+    <h3>Growth</h3>
 
-        <p>
-          Developing the courage, mindset and wisdom to keep
-          becoming the person you are called to be.
-        </p>
-      </div>
+    <p>
+      Developing the courage, mindset and wisdom to keep
+      becoming the person you are called to be.
+    </p>
+  </div>
 
-    </div>
+</div>
+```
 
   </section>
-
 
   <!-- ABOUT JANET -->
 
   <section class="about" id="about">
 
-    <div class="about-grid">
+```
+<div class="about-grid">
 
-      <div class="about-image"></div>
+  <div class="about-image"></div>
 
-      <div class="about-copy">
+  <div class="about-copy">
 
-        <div class="small-label">
-          Meet Janet
-        </div>
-
-        <h2>
-          There is power in becoming.
-        </h2>
-
-        <p>
-          Glow From The Ground Up is Janet's space for sharing
-          stories, reflections and conversations around the
-          experiences that shape us.
-        </p>
-
-        <p>
-          It is a reminder that growth does not always happen
-          overnight. Sometimes it happens quietly — through
-          faith, difficult seasons, brave decisions and choosing
-          to keep going.
-        </p>
-
-        <p>
-          Through the book, stories, conversations and media,
-          Janet hopes to create a space where people can learn,
-          reflect and find encouragement for their own journey.
-        </p>
-
-        <div class="signature">
-          — Janet
-        </div>
-
-      </div>
-
+    <div class="small-label">
+      Meet Janet
     </div>
 
-  </section>
+    <h2>
+      There is power in becoming.
+    </h2>
 
+    <p>
+      Glow From The Ground Up is Janet's space for sharing
+      stories, reflections and conversations around the
+      experiences that shape us.
+    </p>
+
+    <p>
+      It is a reminder that growth does not always happen
+      overnight. Sometimes it happens quietly — through
+      faith, difficult seasons, brave decisions and choosing
+      to keep going.
+    </p>
+
+    <p>
+      Through the book, stories, conversations and media,
+      Janet hopes to create a space where people can learn,
+      reflect and find encouragement for their own journey.
+    </p>
+
+    <div class="signature">
+      — Janet
+    </div>
+
+  </div>
+
+</div>
+```
+
+  </section>
 
   <!-- BOOK -->
 
   <section class="book" id="book">
 
-    <div class="book-grid">
+```
+<div class="book-grid">
 
-      <div class="book-cover">
+  <div class="book-cover">
 
-        <div class="book-cover-inner">
-
-          <div class="small-label">
-            Janet's Book
-          </div>
-
-          <h3>
-            Glow From<br>
-            The Ground Up
-          </h3>
-
-          <p>
-            A journey of faith, growth and becoming.
-          </p>
-
-        </div>
-
-      </div>
-
-
-      <div class="book-copy">
-
-        <div class="small-label">
-          The Book
-        </div>
-
-        <h2>
-          Glow From The Ground Up
-        </h2>
-
-        <p>
-          A story about beginnings, challenges, growth,
-          faith and discovering the person you are becoming.
-        </p>
-
-        <div class="quote">
-          "Where you began may be part of your story,
-          but it does not have to determine where you finish."
-        </div>
-
-        <a href="#contact" class="button primary">
-          Learn More
-        </a>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- STORIES -->
-
-  <section class="stories" id="stories">
-
-    <div class="section-heading center">
+    <div class="book-cover-inner">
 
       <div class="small-label">
-        Stories
+        Janet's Book
       </div>
 
-      <h2>
-        Stories that make us grow.
-      </h2>
+      <h3>
+        Glow From<br>
+        The Ground Up
+      </h3>
 
       <p>
-        Real experiences. Honest reflections.
-        Lessons from the journey.
+        A journey of faith, growth and becoming.
       </p>
 
     </div>
 
-
-    <div class="cards">
-
-      <article class="story-card">
-
-        <div class="story-top">
-          <h3>My Beginning</h3>
-        </div>
-
-        <div class="story-body">
-
-          <p>
-            Every journey has a starting point.
-            Your beginning can shape you without defining you.
-          </p>
-
-          <a href="#contact" class="read-more">
-            Read more →
-          </a>
-
-        </div>
-
-      </article>
+  </div>
 
 
-      <article class="story-card">
+  <div class="book-copy">
 
-        <div class="story-top">
-          <h3>Finding Purpose</h3>
-        </div>
-
-        <div class="story-body">
-
-          <p>
-            Sometimes purpose becomes clearer while we are
-            walking through the journey itself.
-          </p>
-
-          <a href="#contact" class="read-more">
-            Read more →
-          </a>
-
-        </div>
-
-      </article>
-
-
-      <article class="story-card">
-
-        <div class="story-top">
-          <h3>Becoming</h3>
-        </div>
-
-        <div class="story-body">
-
-          <p>
-            Growth is not always loud. Sometimes it happens
-            quietly, one decision at a time.
-          </p>
-
-          <a href="#contact" class="read-more">
-            Read more →
-          </a>
-
-        </div>
-
-      </article>
-
+    <div class="small-label">
+      The Book
     </div>
+
+    <h2>
+      Glow From The Ground Up
+    </h2>
+
+    <p>
+      A story about beginnings, challenges, growth,
+      faith and discovering the person you are becoming.
+    </p>
+
+    <div class="quote">
+      "Where you began may be part of your story,
+      but it does not have to determine where you finish."
+    </div>
+
+    <a href="#contact" class="button primary">
+      Learn More
+    </a>
+
+  </div>
+
+</div>
+```
 
   </section>
 
+  <!-- DYNAMIC STORIES -->
+
+  <section class="stories" id="stories">
+
+```
+<div class="section-heading center">
+
+  <div class="small-label">
+    Stories
+  </div>
+
+  <h2>
+    Stories that make us grow.
+  </h2>
+
+  <p>
+    Real experiences. Honest reflections.
+    Lessons from the journey.
+  </p>
+
+</div>
+
+<div id="stories-container" class="content-grid">
+
+  <div class="empty-message">
+    Loading Janet's stories...
+  </div>
+
+</div>
+```
+
+  </section>
 
   <!-- MEDIA -->
 
   <section class="media" id="media">
 
-    <div class="section-heading center">
+```
+<div class="section-heading center">
 
-      <div class="small-label">
-        Media & Resources
-      </div>
+  <div class="small-label">
+    Media & Resources
+  </div>
 
-      <h2>
-        Keep the conversation going.
-      </h2>
+  <h2>
+    Keep the conversation going.
+  </h2>
 
-      <p>
-        Videos, podcasts, conversations and resources
-        will live here as the Glow From The Ground Up
-        community continues to grow.
-      </p>
+  <p>
+    Videos, podcasts, conversations and resources
+    will live here as the Glow From The Ground Up
+    community continues to grow.
+  </p>
 
+</div>
+
+<div class="cards">
+
+  <div class="media-card">
+
+    <div class="media-icon">
+      🎥
     </div>
-
-
-    <div class="cards">
-
-      <div class="media-card">
-
-        <div class="media-icon">
-          🎥
-        </div>
-
-        <h3>
-          Videos
-        </h3>
-
-        <p>
-          Conversations, teachings, interviews and
-          inspiring stories.
-        </p>
-
-        <a href="#contact" class="media-link">
-          Watch videos →
-        </a>
-
-      </div>
-
-
-      <div class="media-card">
-
-        <div class="media-icon">
-          🎙️
-        </div>
-
-        <h3>
-          Podcasts
-        </h3>
-
-        <p>
-          Honest conversations about faith, purpose,
-          growth and life.
-        </p>
-
-        <a href="#contact" class="media-link">
-          Listen to podcasts →
-        </a>
-
-      </div>
-
-
-      <div class="media-card">
-
-        <div class="media-icon">
-          📖
-        </div>
-
-        <h3>
-          Resources
-        </h3>
-
-        <p>
-          Practical resources and reflections for
-          your personal journey.
-        </p>
-
-        <a href="#contact" class="media-link">
-          Explore resources →
-        </a>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- JOURNEY CTA -->
-
-  <section class="journey">
-
-    <div class="small-label">
-      Your Journey Matters
-    </div>
-
-    <h2>
-      You don't have to have everything figured out.
-    </h2>
-
-    <p>
-      Sometimes the next step is simply deciding to begin.
-      Keep growing. Keep becoming. Keep going.
-    </p>
-
-    <a href="#contact" class="button primary">
-      Connect With Glow From The Ground Up
-    </a>
-
-  </section>
-
-
-  <!-- CONTACT -->
-
-  <section class="contact" id="contact">
-
-    <div class="contact-box">
-
-      <div class="small-label">
-        Connect
-      </div>
-
-      <h2>
-        Start the conversation.
-      </h2>
-
-      <p>
-        For book conversations, collaborations, speaking,
-        media or other enquiries, connect with Glow From
-        The Ground Up.
-      </p>
-
-      <!--
-        Janet's real email/social links can be added here
-        once they are available.
-      -->
-
-      <p>
-        Contact details coming soon.
-      </p>
-
-    </div>
-
-  </section>
-
-
-  <!-- FOOTER -->
-
-  <footer>
 
     <h3>
-      Glow From The Ground Up
+      Videos
     </h3>
 
     <p>
-      Faith. Purpose. Growth. Becoming.
+      Conversations, teachings, interviews and
+      inspiring stories.
     </p>
 
-    <div class="footer-note">
-      © 2026 Glow From The Ground Up. All rights reserved.
+    <a href="#videos-content" class="media-link">
+      Watch videos →
+    </a>
+
+  </div>
+
+
+  <div class="media-card">
+
+    <div class="media-icon">
+      🎙️
     </div>
 
-  </footer>
+    <h3>
+      Podcasts
+    </h3>
 
-</body>
-</html>
+    <p>
+      Honest conversations about faith, purpose,
+      growth and life.
+    </p>
+
+    <a href="#podcasts-content" class="media-link">
+      Listen to podcasts →
+    </a>
+
+  </div>
+
+
+  <div class="media-card">
+
+    <div class="media-icon">
+      📖
+    </div>
+
+    <h3>
+      Resources
+    </h3>
+
+    <p>
+      Practical resources and reflections for
+      your personal journey.
+    </p>
+
+    <a href="#contact" class="media-link">
+      Explore resources →
+    </a>
+
+  </div>
+
+</div>
+
+
+<!-- DYNAMIC PODCASTS -->
+
+<div id="podcasts-content" style="margin-top: 50px;">
+
+  <div class="section-heading center">
+    <div class="small-label">Podcasts</div>
+    <h2>Conversations worth hearing.</h2>
+  </div>
+
+  <div id="podcasts-container" class="content-grid">
+
+    <div class="empty-message">
+      Loading podcasts...
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- DYNAMIC VIDEOS -->
+
+<div id="videos-content" style="margin-top: 70px;">
+
+  <div class="section-heading center">
+    <div class="small-label">Videos</div>
+    <h2>Watch and be inspired.</h2>
+  </div>
+
+  <div id="videos-container" class="content-grid">
+
+    <div class="empty-message">
+```
