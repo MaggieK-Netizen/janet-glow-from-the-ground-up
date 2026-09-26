@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Glow From The Ground Up | Janet</title>
 
@@ -27,8 +27,8 @@
     }
 
     a {
-      color: inherit;
       text-decoration: none;
+      color: inherit;
     }
 
     img {
@@ -146,7 +146,7 @@
       background: #b9824e;
     }
 
-    /* GENERAL SECTIONS */
+    /* SECTIONS */
 
     section {
       padding: 90px 0;
@@ -255,7 +255,7 @@
     }
 
     .content-message {
-      background: #fff;
+      background: white;
       border: 1px solid #e2dacd;
       padding: 30px;
       border-radius: 14px;
@@ -397,7 +397,7 @@
       line-height: 1.9;
     }
 
-    /* RESPONSIVE */
+    /* MOBILE */
 
     @media (max-width: 800px) {
 
@@ -498,7 +498,7 @@
           <img
             src="WhatsApp Image 2026-09-24 at 18.28.36.jpeg"
             alt="Janet"
-          />
+          >
         </div>
 
         <div class="about-text">
@@ -647,7 +647,7 @@
           <img
             src="WhatsApp Image 2026-09-24 at 18.28.36.jpeg"
             alt="Janet"
-          />
+          >
 
         </div>
 
@@ -693,7 +693,7 @@
           <img
             src="WhatsApp Image 2026-09-24 at 18.28.36.jpeg"
             alt="Janet's book"
-          />
+          >
 
         </div>
 
@@ -745,15 +745,15 @@
 
   <script>
 
-    /* ==========================================
-       SUPABASE CONNECTION
-    ========================================== */
+    /* =========================================
+       SUPABASE
+    ========================================= */
 
     const SUPABASE_URL =
       "https://jlmvggfzbjimeihmeary.supabase.co";
 
     const SUPABASE_KEY =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpsbXZnZ2ZiamltZWhtZWFyeSIsInJvbGUiOiJhbm9uIiwiaWF0IjoxNzkwMzk3NDA3LCJleHAiOjIxMDU5NzM0MDd9.xp46UFiJFXqNITnMWocwo8rt8e-hEadb8Kq3LZweBVQ";
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpsbXZnZ2Z6YmppbWVpaG1lYXJ5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTAzOTc0MDcsImV4cCI6MjEwNTk3MzQwN30.xp46UFiJFXqNITnMWocwo8rt8e-hEadb8Kq3LZweBVQ";
 
     const supabaseClient =
       window.supabase.createClient(
@@ -762,16 +762,16 @@
       );
 
 
-    /* ==========================================
-       STORE STORIES
-    ========================================== */
+    /* =========================================
+       CONTENT STORAGE
+    ========================================= */
 
     window.janetStories = [];
 
 
-    /* ==========================================
-       SECURITY
-    ========================================== */
+    /* =========================================
+       ESCAPE HTML
+    ========================================= */
 
     function escapeHTML(value) {
 
@@ -785,9 +785,9 @@
     }
 
 
-    /* ==========================================
+    /* =========================================
        CREATE CONTENT CARD
-    ========================================== */
+    ========================================= */
 
     function createContentCard(item) {
 
@@ -811,8 +811,6 @@
       let actionButton = "";
 
 
-      /* STORIES */
-
       if (type === "story") {
 
         actionButton = `
@@ -825,9 +823,6 @@
         `;
 
       }
-
-
-      /* VIDEOS */
 
       else if (type === "video" && item.media_url) {
 
@@ -843,9 +838,6 @@
         `;
 
       }
-
-
-      /* PODCASTS */
 
       else if (type === "podcast" && item.media_url) {
 
@@ -864,14 +856,13 @@
 
 
       return `
-
         <article class="content-card">
 
           <img
             class="content-card-image"
             src="${escapeHTML(image)}"
             alt="${escapeHTML(title)}"
-          />
+          >
 
           <div class="content-card-body">
 
@@ -892,15 +883,14 @@
           </div>
 
         </article>
-
       `;
 
     }
 
 
-    /* ==========================================
-       LOAD CONTENT
-    ========================================== */
+    /* =========================================
+       LOAD CONTENT FROM SUPABASE
+    ========================================= */
 
     async function loadContent() {
 
@@ -914,152 +904,162 @@
         document.getElementById("videos-container");
 
 
-      try {
+      console.log("Connecting to Supabase...");
 
-        const {
-          data,
+
+      const {
+        data,
+        error
+      } = await supabaseClient
+        .from("content")
+        .select("*")
+        .eq("published", true)
+        .order("created_at", {
+          ascending: false
+        });
+
+
+      if (error) {
+
+        console.error(
+          "Supabase error:",
           error
-        } = await supabaseClient
-          .from("content")
-          .select("*")
-          .eq("published", true)
-          .order("created_at", {
-            ascending: false
-          });
+        );
 
 
-        if (error) {
-
-          console.error(
-            "Supabase error:",
-            error
-          );
-
-          storiesContainer.innerHTML =
-            `<div class="content-message">
-              Stories are temporarily unavailable.
-            </div>`;
-
-          podcastsContainer.innerHTML =
-            `<div class="content-message">
-              Podcasts are temporarily unavailable.
-            </div>`;
-
-          videosContainer.innerHTML =
-            `<div class="content-message">
-              Videos are temporarily unavailable.
-            </div>`;
-
-          return;
-
-        }
+        storiesContainer.innerHTML = `
+          <div class="content-message">
+            Stories are temporarily unavailable.
+          </div>
+        `;
 
 
-        const items = data || [];
+        podcastsContainer.innerHTML = `
+          <div class="content-message">
+            Podcasts are temporarily unavailable.
+          </div>
+        `;
 
 
-        /* Save content for story reader */
-
-        window.janetStories = items;
-
-
-        const stories =
-          items.filter(item =>
-            String(item.type || "")
-              .trim()
-              .toLowerCase() === "story"
-          );
+        videosContainer.innerHTML = `
+          <div class="content-message">
+            Videos are temporarily unavailable.
+          </div>
+        `;
 
 
-        const podcasts =
-          items.filter(item =>
-            String(item.type || "")
-              .trim()
-              .toLowerCase() === "podcast"
-          );
-
-
-        const videos =
-          items.filter(item =>
-            String(item.type || "")
-              .trim()
-              .toLowerCase() === "video"
-          );
-
-
-        /* STORIES */
-
-        if (stories.length) {
-
-          storiesContainer.innerHTML =
-            stories
-              .map(createContentCard)
-              .join("");
-
-        } else {
-
-          storiesContainer.innerHTML =
-            `<div class="content-message">
-              Janet's stories will appear here soon.
-            </div>`;
-
-        }
-
-
-        /* PODCASTS */
-
-        if (podcasts.length) {
-
-          podcastsContainer.innerHTML =
-            podcasts
-              .map(createContentCard)
-              .join("");
-
-        } else {
-
-          podcastsContainer.innerHTML =
-            `<div class="content-message">
-              Janet's podcasts will appear here soon.
-            </div>`;
-
-        }
-
-
-        /* VIDEOS */
-
-        if (videos.length) {
-
-          videosContainer.innerHTML =
-            videos
-              .map(createContentCard)
-              .join("");
-
-        } else {
-
-          videosContainer.innerHTML =
-            `<div class="content-message">
-              Janet's videos will appear here soon.
-            </div>`;
-
-        }
+        return;
 
       }
 
-      catch (error) {
 
-        console.error(
-          "Unexpected error:",
-          error
+      console.log(
+        "Supabase content:",
+        data
+      );
+
+
+      const items = data || [];
+
+
+      window.janetStories = items;
+
+
+      const stories =
+        items.filter(item =>
+          String(item.type || "")
+            .trim()
+            .toLowerCase() === "story"
         );
+
+
+      const podcasts =
+        items.filter(item =>
+          String(item.type || "")
+            .trim()
+            .toLowerCase() === "podcast"
+        );
+
+
+      const videos =
+        items.filter(item =>
+          String(item.type || "")
+            .trim()
+            .toLowerCase() === "video"
+        );
+
+
+      /* STORIES */
+
+      if (stories.length > 0) {
+
+        storiesContainer.innerHTML =
+          stories
+            .map(createContentCard)
+            .join("");
+
+      }
+
+      else {
+
+        storiesContainer.innerHTML = `
+          <div class="content-message">
+            Janet's stories will appear here soon.
+          </div>
+        `;
+
+      }
+
+
+      /* PODCASTS */
+
+      if (podcasts.length > 0) {
+
+        podcastsContainer.innerHTML =
+          podcasts
+            .map(createContentCard)
+            .join("");
+
+      }
+
+      else {
+
+        podcastsContainer.innerHTML = `
+          <div class="content-message">
+            Janet's podcasts will appear here soon.
+          </div>
+        `;
+
+      }
+
+
+      /* VIDEOS */
+
+      if (videos.length > 0) {
+
+        videosContainer.innerHTML =
+          videos
+            .map(createContentCard)
+            .join("");
+
+      }
+
+      else {
+
+        videosContainer.innerHTML = `
+          <div class="content-message">
+            Janet's videos will appear here soon.
+          </div>
+        `;
 
       }
 
     }
 
 
-    /* ==========================================
-       OPEN FULL STORY
-    ========================================== */
+    /* =========================================
+       OPEN STORY
+    ========================================= */
 
     function openStory(id) {
 
@@ -1084,8 +1084,7 @@
       const reader =
         document.createElement("div");
 
-      reader.id =
-        "story-reader";
+      reader.id = "story-reader";
 
 
       const date =
@@ -1154,19 +1153,17 @@
                       story.title ||
                       "Story image"
                     )}"
-                  />
+                  >
                 `
                 : ""
             }
 
 
             <div class="story-full-body">
-
               ${escapeHTML(
                 story.body ||
                 "Janet has not added the full story yet."
               )}
-
             </div>
 
           </div>
@@ -1176,20 +1173,16 @@
       `;
 
 
-      document.body.appendChild(
-        reader
-      );
+      document.body.appendChild(reader);
 
-
-      document.body.style.overflow =
-        "hidden";
+      document.body.style.overflow = "hidden";
 
     }
 
 
-    /* ==========================================
+    /* =========================================
        CLOSE STORY
-    ========================================== */
+    ========================================= */
 
     function closeStory() {
 
@@ -1206,23 +1199,20 @@
       }
 
 
-      document.body.style.overflow =
-        "";
+      document.body.style.overflow = "";
 
     }
 
 
-    /* ==========================================
-       ESC KEY CLOSES STORY
-    ========================================== */
+    /* =========================================
+       ESC KEY
+    ========================================= */
 
     document.addEventListener(
       "keydown",
       function(event) {
 
-        if (
-          event.key === "Escape"
-        ) {
+        if (event.key === "Escape") {
 
           closeStory();
 
@@ -1232,9 +1222,9 @@
     );
 
 
-    /* ==========================================
-       START
-    ========================================== */
+    /* =========================================
+       START WEBSITE
+    ========================================= */
 
     loadContent();
 
