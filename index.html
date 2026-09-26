@@ -1,34 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>Glow From The Ground Up | Janet</title>
-
-  <meta
-    name="description"
-    content="Glow From The Ground Up — stories, conversations, podcasts and reflections by Janet."
-  >
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
   <style>
-    :root {
-      --forest: #294538;
-      --deep: #1d3027;
-      --sage: #718879;
-      --cream: #f8f3eb;
-      --soft: #eee5d8;
-      --terracotta: #bd7656;
-      --gold: #c7a56a;
-      --white: #ffffff;
-      --text: #26352d;
-      --muted: #718078;
-      --border: rgba(41, 69, 56, 0.12);
-      --shadow: 0 18px 45px rgba(29, 48, 39, 0.10);
-    }
-
     * {
       box-sizing: border-box;
       margin: 0;
@@ -41,8 +21,8 @@
 
     body {
       font-family: Georgia, "Times New Roman", serif;
-      background: var(--cream);
-      color: var(--text);
+      color: #24382c;
+      background: #f8f4ec;
       line-height: 1.7;
     }
 
@@ -56,10 +36,6 @@
       display: block;
     }
 
-    button {
-      font-family: inherit;
-    }
-
     .container {
       width: min(1120px, 92%);
       margin: auto;
@@ -71,43 +47,38 @@
       position: sticky;
       top: 0;
       z-index: 1000;
-      background: rgba(248, 243, 235, 0.96);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--border);
+      background: rgba(248, 244, 236, 0.97);
+      border-bottom: 1px solid #ddd4c4;
+      padding: 18px 0;
     }
 
     .nav-inner {
-      min-height: 76px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 25px;
+      gap: 20px;
     }
 
     .logo {
-      font-size: 1.35rem;
+      font-size: 1.3rem;
       font-weight: bold;
-      color: var(--forest);
-    }
-
-    .logo span {
-      color: var(--terracotta);
+      color: #274c38;
     }
 
     .nav-links {
       display: flex;
-      gap: 25px;
-      align-items: center;
+      gap: 24px;
       flex-wrap: wrap;
+      justify-content: center;
     }
 
     .nav-links a {
-      font-size: 0.92rem;
-      color: var(--forest);
+      font-size: 0.95rem;
+      color: #385341;
     }
 
     .nav-links a:hover {
-      color: var(--terracotta);
+      color: #b27745;
     }
 
     /* HERO */
@@ -134,55 +105,48 @@
 
     .hero-content {
       max-width: 720px;
-      padding: 90px 0;
+      padding: 70px 0;
     }
 
     .eyebrow {
       text-transform: uppercase;
-      letter-spacing: 0.22em;
-      font-size: 0.78rem;
-      margin-bottom: 20px;
-      color: #e5c990;
-      font-weight: bold;
+      letter-spacing: 3px;
+      font-size: 0.8rem;
+      margin-bottom: 15px;
+      color: #d7b995;
     }
 
     .hero h1 {
       font-size: clamp(3rem, 7vw, 6rem);
-      line-height: 0.98;
-      margin-bottom: 28px;
+      line-height: 1;
+      margin-bottom: 25px;
     }
 
     .hero p {
-      font-size: 1.15rem;
+      font-size: 1.2rem;
       max-width: 650px;
-      color: rgba(255,255,255,0.88);
-      margin-bottom: 34px;
+      margin-bottom: 30px;
+      color: #f2eee7;
     }
 
-    .btn {
+    .button {
       display: inline-block;
-      padding: 14px 25px;
-      border-radius: 40px;
-      background: var(--terracotta);
+      padding: 13px 22px;
+      border-radius: 30px;
+      background: #d0a06c;
       color: white;
       font-weight: bold;
-      transition: 0.2s ease;
       border: none;
       cursor: pointer;
+      transition: 0.2s ease;
     }
 
-    .btn:hover {
+    .button:hover {
       transform: translateY(-2px);
-      opacity: 0.92;
+      background: #b9824e;
     }
 
-    .btn-light {
-      background: white;
-      color: var(--forest);
-      margin-left: 10px;
-    }
-
-    /* SECTIONS */
+    /* GENERAL SECTIONS */
 
     section {
       padding: 90px 0;
@@ -193,156 +157,38 @@
       margin-bottom: 45px;
     }
 
-    .section-heading .eyebrow {
-      color: var(--terracotta);
-      margin-bottom: 10px;
-    }
-
     .section-heading h2 {
-      color: var(--forest);
-      font-size: clamp(2.2rem, 5vw, 3.7rem);
-      line-height: 1.1;
-      margin-bottom: 18px;
-    }
-
-    .section-heading p {
-      color: var(--muted);
-    }
-
-    /* INTRO */
-
-    .intro {
-      background: var(--white);
-      text-align: center;
-    }
-
-    .intro-text {
-      max-width: 800px;
-      margin: auto;
-      font-size: 1.3rem;
-      color: var(--forest);
-    }
-
-    /* BELIEFS */
-
-    .beliefs {
-      background: var(--soft);
-    }
-
-    .belief-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 25px;
-    }
-
-    .belief-card {
-      background: var(--white);
-      padding: 35px;
-      border-radius: 20px;
-      box-shadow: var(--shadow);
-    }
-
-    .belief-number {
-      font-size: 2rem;
-      color: var(--terracotta);
+      font-size: clamp(2rem, 4vw, 3.3rem);
+      color: #274c38;
       margin-bottom: 15px;
     }
 
-    .belief-card h3 {
-      color: var(--forest);
-      margin-bottom: 12px;
-      font-size: 1.35rem;
-    }
-
-    .belief-card p {
-      color: var(--muted);
+    .section-heading p {
+      color: #667167;
     }
 
     /* ABOUT */
 
-    .about {
-      background: var(--cream);
-    }
-
     .about-grid {
       display: grid;
-      grid-template-columns: 0.9fr 1.1fr;
-      gap: 60px;
+      grid-template-columns: 1fr 1fr;
+      gap: 55px;
       align-items: center;
     }
 
-    .about-image {
-      min-height: 560px;
-      border-radius: 25px;
-
-      background:
-        linear-gradient(
-          rgba(29,48,39,0.08),
-          rgba(29,48,39,0.08)
-        ),
-        url("WhatsApp Image 2026-09-24 at 18.28.36.jpeg")
-        center/cover;
-
-      box-shadow: var(--shadow);
-    }
-
-    .about-copy h2 {
-      font-size: 3rem;
-      color: var(--forest);
-      line-height: 1.1;
-      margin-bottom: 22px;
-    }
-
-    .about-copy p {
-      margin-bottom: 18px;
-      color: var(--muted);
-    }
-
-    /* BOOK */
-
-    .book {
-      background: var(--deep);
-      color: white;
-    }
-
-    .book-grid {
-      display: grid;
-      grid-template-columns: 0.7fr 1.3fr;
-      gap: 60px;
-      align-items: center;
-    }
-
-    .book-cover {
-      min-height: 470px;
+    .about-image img {
+      width: 100%;
+      height: 560px;
+      object-fit: cover;
       border-radius: 18px;
-
-      background:
-        linear-gradient(
-          rgba(29,48,39,0.25),
-          rgba(29,48,39,0.25)
-        ),
-        url("WhatsApp Image 2026-09-24 at 18.28.36.jpeg")
-        center/cover;
-
-      box-shadow: 0 25px 60px rgba(0,0,0,0.25);
     }
 
-    .book-copy h2 {
-      font-size: 3rem;
-      line-height: 1.1;
-      margin-bottom: 20px;
-    }
-
-    .book-copy p {
-      color: rgba(255,255,255,0.75);
-      margin-bottom: 20px;
+    .about-text p {
+      margin-bottom: 18px;
+      color: #536157;
     }
 
     /* CONTENT */
-
-    .content-section {
-      background: var(--white);
-    }
 
     .content-grid {
       display: grid;
@@ -351,260 +197,234 @@
     }
 
     .content-card {
-      border-radius: 18px;
+      background: white;
+      border: 1px solid #e2dacd;
+      border-radius: 16px;
       overflow: hidden;
-      background: var(--cream);
-      border: 1px solid var(--border);
-      box-shadow: var(--shadow);
+      box-shadow: 0 8px 25px rgba(50, 40, 25, 0.06);
+      transition: 0.2s ease;
     }
 
-    .content-image {
+    .content-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .content-card-image {
+      width: 100%;
       height: 230px;
-      background-position: center;
-      background-size: cover;
-      background-repeat: no-repeat;
+      object-fit: cover;
     }
 
-    .content-body {
-      padding: 25px;
+    .content-card-body {
+      padding: 24px;
     }
 
     .content-type {
+      font-size: 0.75rem;
       text-transform: uppercase;
-      font-size: 0.72rem;
-      letter-spacing: 0.15em;
-      color: var(--terracotta);
+      letter-spacing: 2px;
+      color: #b27745;
+      margin-bottom: 8px;
       font-weight: bold;
+    }
+
+    .content-card h3 {
+      color: #274c38;
+      font-size: 1.45rem;
       margin-bottom: 10px;
     }
 
-    .content-body h3 {
-      color: var(--forest);
-      margin-bottom: 10px;
-      font-size: 1.35rem;
-    }
-
-    .content-body p {
-      color: var(--muted);
-      margin-bottom: 15px;
+    .content-card p {
+      color: #667167;
+      margin-bottom: 18px;
     }
 
     .read-more {
-      color: var(--terracotta);
+      color: #a86f3e;
       font-weight: bold;
+      background: none;
+      border: none;
+      padding: 0;
       cursor: pointer;
+      font-family: inherit;
+      font-size: 1rem;
     }
 
     .read-more:hover {
-      opacity: 0.75;
+      color: #274c38;
     }
 
-    .empty-message {
-      grid-column: 1 / -1;
+    .content-message {
+      background: #fff;
+      border: 1px solid #e2dacd;
+      padding: 30px;
+      border-radius: 14px;
+      color: #667167;
+    }
+
+    /* JOURNEY */
+
+    .journey {
+      background: #274c38;
+      color: white;
+    }
+
+    .journey-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 55px;
+      align-items: center;
+    }
+
+    .journey-image img {
+      width: 100%;
+      height: 500px;
+      object-fit: cover;
+      border-radius: 18px;
+    }
+
+    .journey h2 {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      margin-bottom: 20px;
+    }
+
+    .journey p {
+      color: #e6ece8;
+      margin-bottom: 20px;
+    }
+
+    /* BOOK */
+
+    .book-grid {
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .book-cover img {
+      width: 100%;
+      max-width: 430px;
+      margin: auto;
+      border-radius: 12px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+    }
+
+    .book-text h2 {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      color: #274c38;
+      margin-bottom: 20px;
+    }
+
+    .book-text p {
+      color: #667167;
+      margin-bottom: 18px;
+    }
+
+    /* FOOTER */
+
+    footer {
+      background: #17281f;
+      color: #dfe7e1;
+      padding: 45px 0;
       text-align: center;
-      padding: 35px;
-      color: var(--muted);
-      background: var(--cream);
-      border-radius: 15px;
     }
 
-    /* FULL STORY READER */
+    footer p {
+      margin-bottom: 8px;
+    }
+
+    /* STORY READER */
 
     .story-reader-overlay {
       position: fixed;
       inset: 0;
       z-index: 5000;
-      background: rgba(20, 38, 29, 0.82);
-      backdrop-filter: blur(8px);
+      background: rgba(15, 25, 19, 0.88);
       overflow-y: auto;
       padding: 40px 20px;
     }
 
     .story-reader-box {
       position: relative;
-      width: min(850px, 100%);
-      margin: 0 auto;
-      background: var(--cream);
-      border-radius: 25px;
-      padding: 60px;
-      box-shadow: 0 30px 80px rgba(0,0,0,0.30);
+      max-width: 850px;
+      margin: 20px auto;
+      background: #fffdf8;
+      border-radius: 18px;
+      padding: 55px;
+      box-shadow: 0 25px 80px rgba(0,0,0,0.3);
     }
 
     .story-close {
       position: absolute;
-      top: 18px;
-      right: 22px;
-      width: 45px;
-      height: 45px;
-      border: none;
+      top: 15px;
+      right: 20px;
+      width: 42px;
+      height: 42px;
       border-radius: 50%;
-      background: var(--soft);
-      color: var(--forest);
-      font-size: 2rem;
-      cursor: pointer;
-      line-height: 1;
-    }
-
-    .story-close:hover {
-      background: var(--terracotta);
+      border: none;
+      background: #274c38;
       color: white;
+      font-size: 28px;
+      line-height: 1;
+      cursor: pointer;
     }
 
     .story-reader-box h1 {
-      color: var(--forest);
-      font-size: clamp(2.4rem, 5vw, 4rem);
-      line-height: 1.1;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      line-height: 1.15;
+      color: #274c38;
       margin-bottom: 10px;
     }
 
     .story-date {
-      color: var(--muted);
-      font-size: 0.9rem;
-      margin-bottom: 30px;
+      color: #8a918b;
+      margin-bottom: 25px;
     }
 
     .story-reader-image {
       width: 100%;
-      max-height: 450px;
+      max-height: 500px;
       object-fit: cover;
-      border-radius: 18px;
-      margin-bottom: 35px;
+      border-radius: 14px;
+      margin-bottom: 30px;
     }
 
     .story-full-body {
-      color: var(--text);
-      font-size: 1.15rem;
-      line-height: 1.9;
       white-space: pre-wrap;
-      word-wrap: break-word;
+      color: #48544c;
+      font-size: 1.08rem;
+      line-height: 1.9;
     }
 
-    /* JOURNEY */
-
-    .journey {
-      color: white;
-      text-align: center;
-
-      background:
-        linear-gradient(
-          rgba(29,48,39,0.88),
-          rgba(29,48,39,0.88)
-        ),
-        url("WhatsApp Image 2026-09-24 at 18.28.36.jpeg")
-        center/cover;
-    }
-
-    .journey-inner {
-      max-width: 780px;
-      margin: auto;
-    }
-
-    .journey h2 {
-      font-size: clamp(2.5rem, 6vw, 4rem);
-      line-height: 1.05;
-      margin-bottom: 22px;
-    }
-
-    .journey p {
-      color: rgba(255,255,255,0.82);
-      margin-bottom: 30px;
-      font-size: 1.1rem;
-    }
-
-    /* CONTACT */
-
-    .contact {
-      background: var(--soft);
-      text-align: center;
-    }
-
-    .contact-box {
-      max-width: 720px;
-      margin: auto;
-    }
-
-    .contact h2 {
-      color: var(--forest);
-      font-size: 3rem;
-      margin-bottom: 15px;
-    }
-
-    .contact p {
-      color: var(--muted);
-      margin-bottom: 25px;
-    }
-
-    /* FOOTER */
-
-    footer {
-      background: var(--deep);
-      color: white;
-      padding: 35px 0;
-      text-align: center;
-    }
-
-    footer p {
-      color: rgba(255,255,255,0.65);
-      font-size: 0.9rem;
-    }
-
-    /* MOBILE */
+    /* RESPONSIVE */
 
     @media (max-width: 800px) {
 
       .nav-inner {
         flex-direction: column;
-        padding: 18px 0;
       }
 
-      .nav-links {
-        justify-content: center;
-        gap: 14px;
-      }
-
-      .hero {
-        min-height: 78vh;
-      }
-
-      .hero h1 {
-        font-size: 3.4rem;
-      }
-
-      .btn-light {
-        margin-left: 0;
-        margin-top: 10px;
-      }
-
-      .belief-grid,
-      .content-grid,
       .about-grid,
+      .journey-grid,
       .book-grid {
         grid-template-columns: 1fr;
       }
 
-      .about-image {
-        min-height: 430px;
+      .content-grid {
+        grid-template-columns: 1fr;
       }
 
-      .book-cover {
-        min-height: 430px;
+      .about-image img {
+        height: 420px;
       }
 
-      .story-reader-overlay {
-        padding: 15px;
+      .journey-image img {
+        height: 400px;
       }
 
       .story-reader-box {
-        padding: 45px 25px;
-        border-radius: 18px;
-      }
-
-      .story-reader-box h1 {
-        font-size: 2.3rem;
-      }
-
-      .story-full-body {
-        font-size: 1.05rem;
+        padding: 35px 22px;
       }
     }
   </style>
@@ -617,16 +437,17 @@
   <nav>
     <div class="container nav-inner">
 
-      <a href="#home" class="logo">
-        Glow <span>From The Ground Up</span>
-      </a>
+      <div class="logo">
+        Glow From The Ground Up
+      </div>
 
       <div class="nav-links">
+        <a href="#home">Home</a>
         <a href="#about">About</a>
-        <a href="#book">Book</a>
         <a href="#stories">Stories</a>
-        <a href="#media">Media</a>
-        <a href="#contact">Contact</a>
+        <a href="#podcasts">Podcasts</a>
+        <a href="#videos">Videos</a>
+        <a href="#book">Book</a>
       </div>
 
     </div>
@@ -635,7 +456,7 @@
 
   <!-- HERO -->
 
-  <header class="hero" id="home">
+  <section class="hero" id="home">
 
     <div class="container">
 
@@ -646,117 +467,17 @@
         </div>
 
         <h1>
-          Your story can become your strength.
+          Stories of growth, courage & becoming.
         </h1>
 
         <p>
-          A space for honest stories, meaningful conversations,
-          personal growth and the courage to keep becoming.
+          A space for stories, reflections, conversations and experiences
+          that remind us that beautiful things can grow from difficult beginnings.
         </p>
 
-        <a href="#stories" class="btn">
-          Read the stories
+        <a href="#stories" class="button">
+          Explore the Stories
         </a>
-
-        <a href="#about" class="btn btn-light">
-          Meet Janet
-        </a>
-
-      </div>
-
-    </div>
-
-  </header>
-
-
-  <!-- INTRO -->
-
-  <section class="intro">
-
-    <div class="container">
-
-      <p class="intro-text">
-        Sometimes the most powerful glow doesn't begin on the surface.
-        It begins deep within — from the places where we have struggled,
-        learned, healed, grown and found our voice.
-      </p>
-
-    </div>
-
-  </section>
-
-
-  <!-- BELIEFS -->
-
-  <section class="beliefs">
-
-    <div class="container">
-
-      <div class="section-heading">
-
-        <div class="eyebrow">
-          What this space believes
-        </div>
-
-        <h2>
-          There is power in becoming.
-        </h2>
-
-        <p>
-          Glow From The Ground Up is built around honest reflection,
-          resilience and the belief that every chapter can teach us
-          something.
-        </p>
-
-      </div>
-
-      <div class="belief-grid">
-
-        <div class="belief-card">
-
-          <div class="belief-number">01</div>
-
-          <h3>
-            Your story matters
-          </h3>
-
-          <p>
-            Every experience has something to teach, even the chapters
-            we once wished we could forget.
-          </p>
-
-        </div>
-
-
-        <div class="belief-card">
-
-          <div class="belief-number">02</div>
-
-          <h3>
-            Growth takes time
-          </h3>
-
-          <p>
-            Becoming who we are meant to be is a journey, not a race.
-          </p>
-
-        </div>
-
-
-        <div class="belief-card">
-
-          <div class="belief-number">03</div>
-
-          <h3>
-            We don't grow alone
-          </h3>
-
-          <p>
-            Honest conversations can remind us that we are not the only
-            ones navigating life's difficult seasons.
-          </p>
-
-        </div>
 
       </div>
 
@@ -767,75 +488,48 @@
 
   <!-- ABOUT -->
 
-  <section class="about" id="about">
+  <section id="about">
 
-    <div class="container about-grid">
+    <div class="container">
 
-      <div class="about-image"></div>
+      <div class="about-grid">
 
-      <div class="about-copy">
-
-        <div class="eyebrow">
-          Meet Janet
+        <div class="about-image">
+          <img
+            src="WhatsApp Image 2026-09-24 at 18.28.36.jpeg"
+            alt="Janet"
+          />
         </div>
 
-        <h2>
-          A voice for stories, growth and real life.
-        </h2>
+        <div class="about-text">
 
-        <p>
-          Janet's work is rooted in honest conversations and the
-          experiences that shape us.
-        </p>
+          <div class="eyebrow">
+            About Janet
+          </div>
 
-        <p>
-          Through writing, storytelling, podcasts and conversations,
-          Glow From The Ground Up creates room for reflection,
-          encouragement and connection.
-        </p>
+          <div class="section-heading">
+            <h2>
+              Becoming, one story at a time.
+            </h2>
+          </div>
 
-        <p>
-          This is a place to pause, listen, learn and remember that
-          growth can start from anywhere.
-        </p>
+          <p>
+            Glow From The Ground Up is a space created to share honest
+            stories, meaningful conversations and reflections on life.
+          </p>
 
-      </div>
+          <p>
+            Through writing, podcasts and videos, Janet shares experiences
+            that encourage people to keep growing, keep believing and keep
+            becoming.
+          </p>
 
-    </div>
+          <p>
+            Every story is a reminder that where you begin does not have
+            to determine where you end.
+          </p>
 
-  </section>
-
-
-  <!-- BOOK -->
-
-  <section class="book" id="book">
-
-    <div class="container book-grid">
-
-      <div class="book-cover"></div>
-
-      <div class="book-copy">
-
-        <div class="eyebrow">
-          Janet's Book
         </div>
-
-        <h2>
-          Stories that meet you where you are.
-        </h2>
-
-        <p>
-          Explore Janet's written work and discover reflections,
-          experiences and lessons gathered along the journey.
-        </p>
-
-        <p>
-          More information about the book will be shared here.
-        </p>
-
-        <a href="#contact" class="btn">
-          Get in touch
-        </a>
 
       </div>
 
@@ -846,7 +540,7 @@
 
   <!-- STORIES -->
 
-  <section class="content-section" id="stories">
+  <section id="stories">
 
     <div class="container">
 
@@ -857,33 +551,60 @@
         </div>
 
         <h2>
-          From the ground up.
+          Stories from the journey
         </h2>
 
         <p>
-          Personal stories, reflections and experiences from Janet's
-          journey.
+          Read Janet's latest stories and reflections.
         </p>
 
       </div>
 
       <div
-        class="content-grid"
         id="stories-container"
-      >
-        <div class="empty-message">
-          Loading Janet's stories...
-        </div>
-      </div>
+        class="content-grid"
+      ></div>
 
     </div>
 
   </section>
 
 
-  <!-- MEDIA -->
+  <!-- PODCASTS -->
 
-  <section class="content-section" id="media">
+  <section id="podcasts">
+
+    <div class="container">
+
+      <div class="section-heading">
+
+        <div class="eyebrow">
+          Podcasts
+        </div>
+
+        <h2>
+          Conversations that matter
+        </h2>
+
+        <p>
+          Listen to Janet's conversations and podcast episodes.
+        </p>
+
+      </div>
+
+      <div
+        id="podcasts-container"
+        class="content-grid"
+      ></div>
+
+    </div>
+
+  </section>
+
+
+  <!-- VIDEOS -->
+
+  <section id="videos">
 
     <div class="container">
 
@@ -894,54 +615,19 @@
         </div>
 
         <h2>
-          Watch & listen.
+          Watch & discover
         </h2>
 
         <p>
-          Conversations, reflections and moments shared through video.
+          Videos, interviews and visual stories from Janet.
         </p>
 
       </div>
 
       <div
-        class="content-grid"
         id="videos-container"
-      >
-        <div class="empty-message">
-          Loading Janet's videos...
-        </div>
-      </div>
-
-
-      <br>
-      <br>
-      <br>
-
-
-      <div class="section-heading">
-
-        <div class="eyebrow">
-          Podcasts
-        </div>
-
-        <h2>
-          Conversations that matter.
-        </h2>
-
-        <p>
-          Listen to Janet's conversations, reflections and podcast episodes.
-        </p>
-
-      </div>
-
-      <div
         class="content-grid"
-        id="podcasts-container"
-      >
-        <div class="empty-message">
-          Loading Janet's podcasts...
-        </div>
-      </div>
+      ></div>
 
     </div>
 
@@ -952,52 +638,86 @@
 
   <section class="journey">
 
-    <div class="container journey-inner">
+    <div class="container">
 
-      <div class="eyebrow">
-        The journey continues
+      <div class="journey-grid">
+
+        <div class="journey-image">
+
+          <img
+            src="WhatsApp Image 2026-09-24 at 18.28.36.jpeg"
+            alt="Janet"
+          />
+
+        </div>
+
+        <div>
+
+          <div class="eyebrow">
+            The Journey
+          </div>
+
+          <h2>
+            There is beauty in becoming.
+          </h2>
+
+          <p>
+            Life is not always a straight line. Sometimes we have to
+            start again, learn again and believe again.
+          </p>
+
+          <p>
+            Glow From The Ground Up is about embracing that journey
+            and finding the strength to keep moving forward.
+          </p>
+
+        </div>
+
       </div>
-
-      <h2>
-        Keep growing. Keep becoming. Keep glowing.
-      </h2>
-
-      <p>
-        Every chapter is part of the journey.
-        There is always another story to tell.
-      </p>
-
-      <a href="#contact" class="btn">
-        Connect with Janet
-      </a>
 
     </div>
 
   </section>
 
 
-  <!-- CONTACT -->
+  <!-- BOOK -->
 
-  <section class="contact" id="contact">
+  <section id="book">
 
-    <div class="container contact-box">
+    <div class="container">
 
-      <div class="eyebrow">
-        Get in touch
+      <div class="book-grid">
+
+        <div class="book-cover">
+
+          <img
+            src="WhatsApp Image 2026-09-24 at 18.28.36.jpeg"
+            alt="Janet's book"
+          />
+
+        </div>
+
+        <div class="book-text">
+
+          <div class="eyebrow">
+            The Book
+          </div>
+
+          <h2>
+            Glow From The Ground Up
+          </h2>
+
+          <p>
+            A story of growth, resilience, courage and becoming.
+          </p>
+
+          <p>
+            More details about Janet's book will be available here.
+          </p>
+
+        </div>
+
       </div>
-
-      <h2>
-        Let's connect.
-      </h2>
-
-      <p>
-        For conversations, collaborations, speaking opportunities,
-        the book or simply to share your story.
-      </p>
-
-      <a href="#contact" class="btn">
-        Contact Janet
-      </a>
 
     </div>
 
@@ -1011,7 +731,11 @@
     <div class="container">
 
       <p>
-        © 2026 Glow From The Ground Up. All rights reserved.
+        © 2026 Glow From The Ground Up
+      </p>
+
+      <p>
+        Created with love and purpose.
       </p>
 
     </div>
@@ -1019,78 +743,65 @@
   </footer>
 
 
-  <!-- SUPABASE -->
-
   <script>
+
+    /* ==========================================
+       SUPABASE CONNECTION
+    ========================================== */
 
     const SUPABASE_URL =
       "https://jlmvggfzbjimeihmeary.supabase.co";
 
-
-    /*
-      IMPORTANT:
-      This is the exact working ANON PUBLIC key.
-      Do NOT replace it with the secret/service_role key.
-    */
-
     const SUPABASE_KEY =
       "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpsbXZnZ2ZiamltZWhtZWFyeSIsInJvbGUiOiJhbm9uIiwiaWF0IjoxNzkwMzk3NDA3LCJleHAiOjIxMDU5NzM0MDd9.xp46UFiJFXqNITnMWocwo8rt8e-hEadb8Kq3LZweBVQ";
 
-
     const supabaseClient =
-      supabase.createClient(
+      window.supabase.createClient(
         SUPABASE_URL,
         SUPABASE_KEY
       );
 
 
-    /*
-      ALL CONTENT LOADED FROM SUPABASE
-    */
+    /* ==========================================
+       STORE STORIES
+    ========================================== */
 
     window.janetStories = [];
 
 
-    /*
-      SAFELY DISPLAY TEXT
-    */
+    /* ==========================================
+       SECURITY
+    ========================================== */
 
     function escapeHTML(value) {
 
-      if (value === null || value === undefined) {
-        return "";
-      }
-
-      return String(value)
+      return String(value ?? "")
         .replace(/&/g, "&amp;")
         .replace(/</g, "&lt;")
         .replace(/>/g, "&gt;")
         .replace(/"/g, "&quot;")
         .replace(/'/g, "&#039;");
+
     }
 
 
-    /*
-      CREATE CONTENT CARD
-    */
+    /* ==========================================
+       CREATE CONTENT CARD
+    ========================================== */
 
     function createContentCard(item) {
 
+      const type =
+        String(item.type || "")
+          .trim()
+          .toLowerCase();
+
       const title =
-        escapeHTML(
-          item.title || "Untitled"
-        );
+        item.title || "Untitled";
 
       const description =
-        escapeHTML(
-          item.description ||
-          "Read more from Janet."
-        );
-
-      const type =
-        escapeHTML(
-          item.type || ""
-        );
+        item.description ||
+        "Read more from Janet.";
 
       const image =
         item.thumbnail_url ||
@@ -1100,28 +811,14 @@
       let actionButton = "";
 
 
-      /*
-        STORIES GET A FULL STORY BUTTON
-      */
+      /* STORIES */
 
-      if (
-        String(item.type || "")
-          .trim()
-          .toLowerCase() === "story"
-      ) {
+      if (type === "story") {
 
         actionButton = `
           <button
             class="read-more"
-            onclick="openStory('${item.id}')"
-            style="
-              background: none;
-              border: none;
-              padding: 0;
-              font-family: inherit;
-              font-size: 1rem;
-              cursor: pointer;
-            "
+            onclick="openStory('${escapeHTML(item.id)}')"
           >
             Read Full Story →
           </button>
@@ -1130,20 +827,36 @@
       }
 
 
-      /*
-        VIDEOS / PODCASTS
-      */
+      /* VIDEOS */
 
-      else if (item.media_url) {
+      else if (type === "video" && item.media_url) {
 
         actionButton = `
           <a
-            class="read-more"
             href="${escapeHTML(item.media_url)}"
             target="_blank"
             rel="noopener noreferrer"
+            class="read-more"
           >
-            View / Listen →
+            Watch Video →
+          </a>
+        `;
+
+      }
+
+
+      /* PODCASTS */
+
+      else if (type === "podcast" && item.media_url) {
+
+        actionButton = `
+          <a
+            href="${escapeHTML(item.media_url)}"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="read-more"
+          >
+            Listen Now →
           </a>
         `;
 
@@ -1151,32 +864,27 @@
 
 
       return `
+
         <article class="content-card">
 
-          <div
-            class="content-image"
-            style="
-              background-image:
-                linear-gradient(
-                  rgba(29,48,39,0.12),
-                  rgba(29,48,39,0.12)
-                ),
-                url('${escapeHTML(image)}');
-            "
-          ></div>
+          <img
+            class="content-card-image"
+            src="${escapeHTML(image)}"
+            alt="${escapeHTML(title)}"
+          />
 
-          <div class="content-body">
+          <div class="content-card-body">
 
             <div class="content-type">
-              ${type}
+              ${escapeHTML(type || "Content")}
             </div>
 
             <h3>
-              ${title}
+              ${escapeHTML(title)}
             </h3>
 
             <p>
-              ${description}
+              ${escapeHTML(description)}
             </p>
 
             ${actionButton}
@@ -1184,17 +892,174 @@
           </div>
 
         </article>
+
       `;
+
     }
 
 
-    /*
-      OPEN FULL STORY
+    /* ==========================================
+       LOAD CONTENT
+    ========================================== */
 
-      IMPORTANT:
-      We use the story already loaded from Supabase.
-      We do NOT make another database request.
-    */
+    async function loadContent() {
+
+      const storiesContainer =
+        document.getElementById("stories-container");
+
+      const podcastsContainer =
+        document.getElementById("podcasts-container");
+
+      const videosContainer =
+        document.getElementById("videos-container");
+
+
+      try {
+
+        const {
+          data,
+          error
+        } = await supabaseClient
+          .from("content")
+          .select("*")
+          .eq("published", true)
+          .order("created_at", {
+            ascending: false
+          });
+
+
+        if (error) {
+
+          console.error(
+            "Supabase error:",
+            error
+          );
+
+          storiesContainer.innerHTML =
+            `<div class="content-message">
+              Stories are temporarily unavailable.
+            </div>`;
+
+          podcastsContainer.innerHTML =
+            `<div class="content-message">
+              Podcasts are temporarily unavailable.
+            </div>`;
+
+          videosContainer.innerHTML =
+            `<div class="content-message">
+              Videos are temporarily unavailable.
+            </div>`;
+
+          return;
+
+        }
+
+
+        const items = data || [];
+
+
+        /* Save content for story reader */
+
+        window.janetStories = items;
+
+
+        const stories =
+          items.filter(item =>
+            String(item.type || "")
+              .trim()
+              .toLowerCase() === "story"
+          );
+
+
+        const podcasts =
+          items.filter(item =>
+            String(item.type || "")
+              .trim()
+              .toLowerCase() === "podcast"
+          );
+
+
+        const videos =
+          items.filter(item =>
+            String(item.type || "")
+              .trim()
+              .toLowerCase() === "video"
+          );
+
+
+        /* STORIES */
+
+        if (stories.length) {
+
+          storiesContainer.innerHTML =
+            stories
+              .map(createContentCard)
+              .join("");
+
+        } else {
+
+          storiesContainer.innerHTML =
+            `<div class="content-message">
+              Janet's stories will appear here soon.
+            </div>`;
+
+        }
+
+
+        /* PODCASTS */
+
+        if (podcasts.length) {
+
+          podcastsContainer.innerHTML =
+            podcasts
+              .map(createContentCard)
+              .join("");
+
+        } else {
+
+          podcastsContainer.innerHTML =
+            `<div class="content-message">
+              Janet's podcasts will appear here soon.
+            </div>`;
+
+        }
+
+
+        /* VIDEOS */
+
+        if (videos.length) {
+
+          videosContainer.innerHTML =
+            videos
+              .map(createContentCard)
+              .join("");
+
+        } else {
+
+          videosContainer.innerHTML =
+            `<div class="content-message">
+              Janet's videos will appear here soon.
+            </div>`;
+
+        }
+
+      }
+
+      catch (error) {
+
+        console.error(
+          "Unexpected error:",
+          error
+        );
+
+      }
+
+    }
+
+
+    /* ==========================================
+       OPEN FULL STORY
+    ========================================== */
 
     function openStory(id) {
 
@@ -1212,18 +1077,18 @@
         );
 
         return;
+
       }
 
 
       const reader =
         document.createElement("div");
 
-
       reader.id =
         "story-reader";
 
 
-      const publishedDate =
+      const date =
         story.created_at
           ? new Date(
               story.created_at
@@ -1238,23 +1103,6 @@
           : "";
 
 
-      const storyImage =
-        story.thumbnail_url
-          ? `
-            <img
-              src="${escapeHTML(
-                story.thumbnail_url
-              )}"
-              class="story-reader-image"
-              alt="${escapeHTML(
-                story.title ||
-                "Story image"
-              )}"
-            >
-          `
-          : "";
-
-
       reader.innerHTML = `
 
         <div class="story-reader-overlay">
@@ -1262,8 +1110,8 @@
           <div class="story-reader-box">
 
             <button
-              onclick="closeStory()"
               class="story-close"
+              onclick="closeStory()"
               aria-label="Close story"
             >
               ×
@@ -1271,37 +1119,60 @@
 
 
             <div class="eyebrow">
-              ${escapeHTML(
-                story.type || "Story"
-              )}
+              Story
             </div>
 
 
             <h1>
               ${escapeHTML(
-                story.title || "Untitled"
+                story.title ||
+                "Untitled Story"
               )}
             </h1>
 
 
-            <p class="story-date">
-              Published ${publishedDate}
-            </p>
+            ${
+              date
+                ? `
+                  <p class="story-date">
+                    Published ${date}
+                  </p>
+                `
+                : ""
+            }
 
 
-            ${storyImage}
+            ${
+              story.thumbnail_url
+                ? `
+                  <img
+                    class="story-reader-image"
+                    src="${escapeHTML(
+                      story.thumbnail_url
+                    )}"
+                    alt="${escapeHTML(
+                      story.title ||
+                      "Story image"
+                    )}"
+                  />
+                `
+                : ""
+            }
 
 
             <div class="story-full-body">
+
               ${escapeHTML(
                 story.body ||
                 "Janet has not added the full story yet."
               )}
+
             </div>
 
           </div>
 
         </div>
+
       `;
 
 
@@ -1312,12 +1183,13 @@
 
       document.body.style.overflow =
         "hidden";
+
     }
 
 
-    /*
-      CLOSE STORY
-    */
+    /* ==========================================
+       CLOSE STORY
+    ========================================== */
 
     function closeStory() {
 
@@ -1328,259 +1200,41 @@
 
 
       if (reader) {
+
         reader.remove();
+
       }
 
 
       document.body.style.overflow =
         "";
-    }
-
-
-    /*
-      LOAD PUBLISHED CONTENT
-    */
-
-    async function loadContent() {
-
-      const storiesContainer =
-        document.getElementById(
-          "stories-container"
-        );
-
-      const videosContainer =
-        document.getElementById(
-          "videos-container"
-        );
-
-      const podcastsContainer =
-        document.getElementById(
-          "podcasts-container"
-        );
-
-
-      try {
-
-        const {
-          data,
-          error
-        } = await supabaseClient
-          .from("content")
-          .select("*")
-          .eq("published", true)
-          .order(
-            "created_at",
-            {
-              ascending: false
-            }
-          );
-
-
-        if (error) {
-
-          console.error(
-            "SUPABASE ERROR:",
-            error
-          );
-
-
-          storiesContainer.innerHTML = `
-            <div class="empty-message">
-              Stories are temporarily unavailable.
-            </div>
-          `;
-
-
-          videosContainer.innerHTML = `
-            <div class="empty-message">
-              Videos are temporarily unavailable.
-            </div>
-          `;
-
-
-          podcastsContainer.innerHTML = `
-            <div class="empty-message">
-              Podcasts are temporarily unavailable.
-            </div>
-          `;
-
-
-          return;
-        }
-
-
-        /*
-          SAVE EVERYTHING IN MEMORY
-        */
-
-        const items =
-          data || [];
-
-
-        window.janetStories =
-          items;
-
-
-        console.log(
-          "Janet content loaded:",
-          items
-        );
-
-
-        /*
-          FILTER STORIES
-        */
-
-        const stories =
-          items.filter(
-            item =>
-              String(
-                item.type || ""
-              )
-              .trim()
-              .toLowerCase() === "story"
-          );
-
-
-        /*
-          FILTER VIDEOS
-        */
-
-        const videos =
-          items.filter(
-            item =>
-              String(
-                item.type || ""
-              )
-              .trim()
-              .toLowerCase() === "video"
-          );
-
-
-        /*
-          FILTER PODCASTS
-        */
-
-        const podcasts =
-          items.filter(
-            item =>
-              String(
-                item.type || ""
-              )
-              .trim()
-              .toLowerCase() === "podcast"
-          );
-
-
-        /*
-          DISPLAY STORIES
-        */
-
-        if (stories.length > 0) {
-
-          storiesContainer.innerHTML =
-            stories
-              .map(
-                createContentCard
-              )
-              .join("");
-
-        } else {
-
-          storiesContainer.innerHTML = `
-            <div class="empty-message">
-              Janet's stories will appear here soon.
-            </div>
-          `;
-
-        }
-
-
-        /*
-          DISPLAY VIDEOS
-        */
-
-        if (videos.length > 0) {
-
-          videosContainer.innerHTML =
-            videos
-              .map(
-                createContentCard
-              )
-              .join("");
-
-        } else {
-
-          videosContainer.innerHTML = `
-            <div class="empty-message">
-              Janet's videos will appear here soon.
-            </div>
-          `;
-
-        }
-
-
-        /*
-          DISPLAY PODCASTS
-        */
-
-        if (podcasts.length > 0) {
-
-          podcastsContainer.innerHTML =
-            podcasts
-              .map(
-                createContentCard
-              )
-              .join("");
-
-        } else {
-
-          podcastsContainer.innerHTML = `
-            <div class="empty-message">
-              Janet's podcasts will appear here soon.
-            </div>
-          `;
-
-        }
-
-      }
-
-      catch (error) {
-
-        console.error(
-          "CONTENT ERROR:",
-          error
-        );
-
-
-        storiesContainer.innerHTML = `
-          <div class="empty-message">
-            Stories are temporarily unavailable.
-          </div>
-        `;
-
-
-        videosContainer.innerHTML = `
-          <div class="empty-message">
-            Videos are temporarily unavailable.
-          </div>
-        `;
-
-
-        podcastsContainer.innerHTML = `
-          <div class="empty-message">
-            Podcasts are temporarily unavailable.
-          </div>
-        `;
-
-      }
 
     }
 
 
-    /*
-      START
-    */
+    /* ==========================================
+       ESC KEY CLOSES STORY
+    ========================================== */
+
+    document.addEventListener(
+      "keydown",
+      function(event) {
+
+        if (
+          event.key === "Escape"
+        ) {
+
+          closeStory();
+
+        }
+
+      }
+    );
+
+
+    /* ==========================================
+       START
+    ========================================== */
 
     loadContent();
 
